@@ -1,9 +1,10 @@
 const firstName = "Sylvester";
 const lastName = "Stalone";
-
-console.log(firstName.length);
-console.log(lastName.length);
-console.log(lastName);
+if (firstName.length > lastName.length) {
+  console.log(lastName);
+} else {
+  console.log(firstName);
+}
 
 const vardas = "Rūta ";
 const pavardė = "Jurgelytė";
