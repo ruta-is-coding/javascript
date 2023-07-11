@@ -25,3 +25,5 @@ let weirdName =
   actorsLastName[actorsLastName.length - 2] +
   actorsLastName[actorsLastName.length - 1];
 console.log(weirdName);
+
+// let weirdName = actorsName.slice(-3) + actorsLastName.slice(-3);
