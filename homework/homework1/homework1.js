@@ -2,24 +2,26 @@ const firstName = "Sylvester";
 const lastName = "Stalone";
 if (firstName.length > lastName.length) {
   console.log(lastName);
+} else if (firstName.length === lastName.length) {
+  console.log("Vardas ir pavardė yra vienodo ilgio");
 } else {
   console.log(firstName);
 }
 
 const vardas = "Rūta ";
-const pavardė = "Jurgelytė";
+const pavarde = "Jurgelytė";
 const gimimoMetai = 1996;
-let šieMetai = 2023;
-let metai = šieMetai - gimimoMetai;
-console.log("Aš esu " + vardas + pavardė + ". Man yra " + metai + " metai(ų).");
+let sieMetai = 2023;
+let metai = sieMetai - gimimoMetai;
+console.log("Aš esu " + vardas + pavarde + ". Man yra " + metai + " metai(ų).");
 
 const actorsName = "Sylvester";
-const actorslastName = "Stalone";
+const actorsLastName = "Stalone";
 let weirdName =
   actorsName[actorsName.length - 3] +
   actorsName[actorsName.length - 2] +
   actorsName[actorsName.length - 1] +
-  actorslastName[actorslastName.length - 3] +
-  actorslastName[actorslastName.length - 2] +
-  actorslastName[actorslastName.length - 1];
+  actorsLastName[actorsLastName.length - 3] +
+  actorsLastName[actorsLastName.length - 2] +
+  actorsLastName[actorsLastName.length - 1];
 console.log(weirdName);
