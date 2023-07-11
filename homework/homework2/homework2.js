@@ -83,6 +83,7 @@ console.log(third);
 let min = Math.min(first, second, third);
 let max = Math.max(first, second, third);
 
+console.log("Vidurinis skaičius:");
 if (first !== max && first !== min) {
   console.log(first);
 } else if (second !== max && second !== min) {
