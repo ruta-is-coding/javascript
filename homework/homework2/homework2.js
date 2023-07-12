@@ -66,6 +66,8 @@ let antras = rand(0, 4);
 console.log(antras);
 if (pirmas > antras) {
   console.log("Rezultatas:" + (pirmas / antras).toFixed(2));
+} else if (pirmas === antras) {
+  console.log("Reikšmės yra lygios");
 } else {
   console.log("Rezultatas:" + (antras / pirmas).toFixed(2));
 }
