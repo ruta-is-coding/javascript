@@ -5,5 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ciklai</title>
   </head>
-  <body></body>
+  <body>
+    <p id="stars" style="word-break: break-all"></p>
+    <h3 id="heading"></h3>
+    <script>
+      //Žvaigždutės
+      let i = 0;
+      let rez = "";
+      while (i < 400) {
+        if (i % 50 === 0) rez += "\n";
+        i++;
+        rez += "*";
+      }
+      document.getElementById("stars").innerText = rez;
+
+      // Pirma užduotis
+      function rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+      console.log("Pirma užduotis");
+      let skaičius = rand(1, 6);
+      document.getElementById("heading").innerText = skaičius;
+
+      //   Antra užduotis
+    </script>
+  </body>
 </html>
