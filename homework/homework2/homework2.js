@@ -95,7 +95,6 @@ console.log(firstLetters);
 
 console.log("Devinta užduotis");
 let alphabet = "abcdefghijklmnopqrstuvwxyz";
-alphabet = alphabet.toUpperCase();
 let positionOne = rand(0, alphabet.length - 1);
 let positionTwo = rand(0, alphabet.length - 1);
 let positionThree = rand(0, alphabet.length - 1);
