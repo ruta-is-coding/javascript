@@ -84,15 +84,8 @@ console.log(third);
 
 let min = Math.min(first, second, third);
 let max = Math.max(first, second, third);
-
-console.log("Vidurinis skaičius:");
-if (first !== max && first !== min) {
-  console.log(first);
-} else if (second !== max && second !== min) {
-  console.log(second);
-} else {
-  console.log(third);
-}
+let vidurinisSkaicius = first + second + third - (min + max);
+console.log("Vidurinis skaičius:", vidurinisSkaicius);
 
 console.log("Aštunta užduotis");
 let firstName = "Audrey";
