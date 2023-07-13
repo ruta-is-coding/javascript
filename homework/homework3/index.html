@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ciklai</title>
+    <style>
+      .red {
+        color: red;
+      }
+      .blue {
+        color: blue;
+      }
+      .green {
+        color: green;
+      }
+    </style>
   </head>
   <body>
     <p id="stars" style="word-break: break-all"></p>
-    <h3 id="heading"></h3>
+    <h1 id="heading1"></h1>
+    <h2 id="heading2"></h2>
+    <h3 id="heading3"></h3>
+    <h4 id="heading4"></h4>
+    <h5 id="heading5"></h5>
+    <h6 id="heading6"></h6>
+    <div id="task2"></div>
+    <div id="task4"></div>
+    <p id="task5"></p>
+
     <script>
       //Žvaigždutės
       let i = 0;
@@ -25,11 +45,106 @@
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1) + min);
       }
-      console.log("Pirma užduotis");
       let skaičius = rand(1, 6);
-      document.getElementById("heading").innerText = skaičius;
+      console.log(skaičius);
+      if (skaičius === 1) {
+        document.getElementById("heading1").innerText = skaičius;
+      } else if (skaičius === 2) {
+        document.getElementById("heading2").innerText = skaičius;
+      } else if (skaičius === 3) {
+        document.getElementById("heading3").innerText = skaičius;
+      } else if (skaičius === 4) {
+        document.getElementById("heading4").innerText = skaičius;
+      } else if (skaičius === 5) {
+        document.getElementById("heading5").innerText = skaičius;
+      } else {
+        document.getElementById("heading6").innerText = skaičius;
+      }
 
       //   Antra užduotis
+      let a = 0;
+      let result = "";
+      while (a < 3) {
+        let colorfulNumber = rand(-10, 10);
+        if (colorfulNumber < 0) {
+          result += '<p class="green">' + colorfulNumber + "</p>";
+        } else if (colorfulNumber === 0) {
+          result += '<p class="red">' + colorfulNumber + "</p>";
+        } else {
+          result += '<p class="blue">' + colorfulNumber + "</p>";
+        }
+        a++;
+        console.log(colorfulNumber);
+        document.getElementById("task2").innerHTML = result;
+      }
+
+      //   Trečia užduotis
+      let string1 = "An American in Paris";
+      let newString1 = string1
+        .replaceAll(/a/gi, "*")
+        .replaceAll(/e/gi, "*")
+        .replaceAll(/i/gi, "*")
+        .replaceAll(/o/gi, "*")
+        .replaceAll(/u/gi, "*")
+        .replaceAll(/y/gi, "*");
+      console.log(newString1);
+      let string2 = "Breakfast at Tiffany's";
+      let newString2 = string2
+        .replaceAll(/a/gi, "*")
+        .replaceAll(/e/gi, "*")
+        .replaceAll(/i/gi, "*")
+        .replaceAll(/o/gi, "*")
+        .replaceAll(/u/gi, "*")
+        .replaceAll(/y/gi, "*");
+      console.log(newString2);
+      let string3 = "2001: A Space Odyssey";
+      let newString3 = string3
+        .replaceAll(/a/gi, "*")
+        .replaceAll(/e/gi, "*")
+        .replaceAll(/i/gi, "*")
+        .replaceAll(/o/gi, "*")
+        .replaceAll(/u/gi, "*")
+        .replaceAll(/y/gi, "*");
+      console.log(newString3);
+      let string4 = "It's a Wonderful Life";
+      let newString4 = string4
+        .replaceAll(/a/gi, "*")
+        .replaceAll(/e/gi, "*")
+        .replaceAll(/i/gi, "*")
+        .replaceAll(/o/gi, "*")
+        .replaceAll(/u/gi, "*")
+        .replaceAll(/y/gi, "*");
+      console.log(newString4);
+
+      //   Ketvirta užduotis
+      let b = 0;
+      let numbersString = "";
+      let moreThan150 = 0;
+      while (b < 300) {
+        b++;
+        let randomNumber = rand(0, 300);
+        if (randomNumber > 150) {
+          moreThan150++;
+        }
+        if (randomNumber > 275) {
+          randomNumber = '<span class="red">' + randomNumber + "</span>";
+        }
+        numbersString = numbersString + randomNumber + " ";
+      }
+      console.log(`Kiek skaitmenų daugiau nei 150: ${moreThan150}`);
+      document.getElementById("task4").innerHTML = numbersString;
+
+      // Penkta užduotis
+      let no = 1;
+      rezultatas = "";
+      while (no <= 3000) {
+        let liekana = no % 77;
+        if (liekana === 0) {
+          rezultatas = rezultatas + no + ", ";
+        }
+        no++;
+      }
+      document.getElementById("task5").innerText = rezultatas;
     </script>
   </body>
 </html>
