@@ -31,11 +31,9 @@
 
     <script>
       //Žvaigždutės
-      let i = 0;
       let rez = "";
-      while (i < 400) {
+      for (let i = 0; i < 400; i++) {
         if (i % 50 === 0) rez += "\n";
-        i++;
         rez += "*";
       }
       document.getElementById("stars").innerText = rez;
