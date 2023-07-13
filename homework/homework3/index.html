@@ -25,6 +25,7 @@
     <h5 id="heading5"></h5>
     <h6 id="heading6"></h6>
     <div id="task2"></div>
+    <p id="newStrings"></p>
     <div id="task4"></div>
     <p id="task5"></p>
 
@@ -80,41 +81,20 @@
 
       //   Trečia užduotis
       let string1 = "An American in Paris";
-      let newString1 = string1
-        .replaceAll(/a/gi, "*")
-        .replaceAll(/e/gi, "*")
-        .replaceAll(/i/gi, "*")
-        .replaceAll(/o/gi, "*")
-        .replaceAll(/u/gi, "*")
-        .replaceAll(/y/gi, "*");
+      let newString1 = string1.replaceAll(/[aeiouy]/gi, "*");
       console.log(newString1);
       let string2 = "Breakfast at Tiffany's";
-      let newString2 = string2
-        .replaceAll(/a/gi, "*")
-        .replaceAll(/e/gi, "*")
-        .replaceAll(/i/gi, "*")
-        .replaceAll(/o/gi, "*")
-        .replaceAll(/u/gi, "*")
-        .replaceAll(/y/gi, "*");
+      let newString2 = string2.replaceAll(/[aeiouy]/gi, "*");
       console.log(newString2);
       let string3 = "2001: A Space Odyssey";
-      let newString3 = string3
-        .replaceAll(/a/gi, "*")
-        .replaceAll(/e/gi, "*")
-        .replaceAll(/i/gi, "*")
-        .replaceAll(/o/gi, "*")
-        .replaceAll(/u/gi, "*")
-        .replaceAll(/y/gi, "*");
+      let newString3 = string3.replaceAll(/[aeiouy]/gi, "*");
       console.log(newString3);
       let string4 = "It's a Wonderful Life";
-      let newString4 = string4
-        .replaceAll(/a/gi, "*")
-        .replaceAll(/e/gi, "*")
-        .replaceAll(/i/gi, "*")
-        .replaceAll(/o/gi, "*")
-        .replaceAll(/u/gi, "*")
-        .replaceAll(/y/gi, "*");
+      let newString4 = string4.replaceAll(/[aeiouy]/gi, "*");
       console.log(newString4);
+      document.getElementById("newStrings").innerText = [
+        `${newString1},\n${newString2},\n${newString3},\n${newString4}`,
+      ];
 
       //   Ketvirta užduotis
       let b = 0;
