@@ -61,11 +61,9 @@
       ];
 
       //   Ketvirta užduotis
-      let b = 0;
       let numbersString = "";
       let moreThan150 = 0;
-      while (b < 300) {
-        b++;
+      for (let b = 0; b < 300; b++) {
         let randomNumber = rand(0, 300);
         if (randomNumber > 150) {
           moreThan150++;
