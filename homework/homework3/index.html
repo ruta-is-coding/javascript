@@ -4,17 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ciklai</title>
-    <style>
-      .red {
-        color: red;
-      }
-      .blue {
-        color: blue;
-      }
-      .green {
-        color: green;
-      }
-    </style>
   </head>
   <body>
     <p id="stars" style="word-break: break-all"></p>
@@ -43,19 +32,16 @@
       // Atspausdinamas gale
 
       //   Antra užduotis
-      let a = 0;
       let result = "";
-      while (a < 3) {
+      for (let i = 0; i < 3; i++) {
         let colorfulNumber = rand(-10, 10);
         if (colorfulNumber < 0) {
-          result += '<p class="green">' + colorfulNumber + "</p>";
+          result += '<p style="color:green">' + colorfulNumber + "</p>";
         } else if (colorfulNumber === 0) {
-          result += '<p class="red">' + colorfulNumber + "</p>";
+          result += '<p style="color:red">' + colorfulNumber + "</p>";
         } else {
-          result += '<p class="blue">' + colorfulNumber + "</p>";
+          result += '<p style="color:blue">' + colorfulNumber + "</p>";
         }
-        a++;
-        console.log(colorfulNumber);
         document.getElementById("task2").innerHTML = result;
       }
 
@@ -87,7 +73,7 @@
           moreThan150++;
         }
         if (randomNumber > 275) {
-          randomNumber = '<span class="red">' + randomNumber + "</span>";
+          randomNumber = '<span style="color:red">' + randomNumber + "</span>";
         }
         numbersString = numbersString + randomNumber + " ";
       }
