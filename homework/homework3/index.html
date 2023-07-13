@@ -7,6 +7,7 @@
   </head>
   <body>
     <p id="stars" style="word-break: break-all"></p>
+    <div id="task1"></div>
     <div id="task2"></div>
     <p id="newStrings"></p>
     <div id="task4"></div>
@@ -28,8 +29,9 @@
         return Math.floor(Math.random() * (max - min + 1) + min);
       }
       let skaičius = rand(1, 6);
-      document.write(`<h${skaičius}>${skaičius}</h${skaičius}>`);
-      // Atspausdinamas gale
+      document.getElementById(
+        "task1"
+      ).innerHTML = `<h${skaičius}>${skaičius}</h${skaičius}>`;
 
       //   Antra užduotis
       let result = "";
