@@ -77,14 +77,11 @@
       document.getElementById("task4").innerHTML = numbersString;
 
       // Penkta užduotis
-      let no = 1;
       rezultatas = "";
-      while (no <= 3000) {
-        let liekana = no % 77;
-        if (liekana === 0) {
+      for (let no = 1; no <= 3000; no++) {
+        if (no % 77 === 0) {
           rezultatas = rezultatas + no + ", ";
         }
-        no++;
       }
       rezultatas = rezultatas.slice(0, -2);
       document.getElementById("task5").innerText = rezultatas;
