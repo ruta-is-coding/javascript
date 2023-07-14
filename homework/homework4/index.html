@@ -12,6 +12,9 @@
     <p id="numbers1"></p>
     <p id="numbers2"></p>
     <p id="numbers3"></p>
+    <p id="moneta"></p>
+    <p id="vinys1"></p>
+    <p id="vinys2"></p>
     <script>
       function rand(min, max) {
         min = Math.ceil(min);
@@ -94,9 +97,45 @@
       } else {
         laimetojas = "Kazys";
       }
-      document.write(
-        `Petras surinko: ${petroTaskaiViso} taškų. Kazys surinko: ${kazioTaskaiViso} taškų. Partiją laimėjo: ${laimetojas}`
-      );
+      document.getElementById(
+        "moneta"
+      ).innerText = `Petras surinko: ${petroTaskaiViso} taškų. Kazys surinko: ${kazioTaskaiViso} taškų. Partiją laimėjo: ${laimetojas}`;
+      //   Penkta užduotis
+      // Sumodeliuokite vinies kalimą. Įkalimo gylį sumodeliuokite pasinaudodami rand() funkcija. Vinies ilgis 8.5cm (pilnai sulenda į lentą).
+      // a) “Įkalkite” 5 vinis mažais smūgiais. Vienas smūgis vinį įkala 5-20 mm. Suskaičiuokite kiek reikia smūgių.
+      let penkiosVinys = 85 * 5;
+      let ikalimoGylis1 = 0; //mm
+      let smugiuKiekis1 = 0;
+      for (let i = 0; true; i++) {
+        let vienasIkalimas = rand(5, 20);
+        smugiuKiekis1++;
+        ikalimoGylis1 += vienasIkalimas;
+        if (ikalimoGylis1 >= penkiosVinys) {
+          break;
+        }
+      }
+      document.getElementById(
+        "vinys1"
+      ).innerText = `Kiek reikia smūgių: ${smugiuKiekis1}`;
+      //   b) “Įkalkite” 5 vinis dideliais smūgiais. Vienas smūgis vinį įkala 20-30 mm, bet yra 50% tikimybė (pasinaudokite rand() funkcija tikimybei sumodeliuoti), kad smūgis nepataikys į vinį. Suskaičiuokite kiek reikia smūgių.
+      let ikalimoGylis2 = 0;
+      let smugiuKiekis2 = 0;
+      for (let i = 0; true; i++) {
+        let vienasIkalimas = rand(20, 30);
+        let tikimybe = (0, 1); //0-nepavyko, 1-pavyko
+        smugiuKiekis2++;
+        if (tikimybe === 0) {
+          continue;
+        } else {
+          ikalimoGylis2 += vienasIkalimas;
+        }
+        if (ikalimoGylis2 >= penkiosVinys) {
+          break;
+        }
+      }
+      document.getElementById(
+        "vinys2"
+      ).innerText = `Kiek reikia smūgių: ${smugiuKiekis2}`;
     </script>
   </body>
 </html>
