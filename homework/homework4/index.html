@@ -26,13 +26,17 @@
       // Pirma užduot🇮s
       //   Nupieškite kvadratą iš “*”, kurio kraštines sudaro 100 “*”. Panaudokite css stilių, kad kvadratas ekrane atrodytų kvadratinis.
       let result = "";
-      for (let i = 0; i < 100; i++) {
-        if (i % 10 === 0) {
-          result += "\n";
+      for (let i = 1; i <= 100; i++) {
+        if (i % 11 === 1 || i % 9 === 1) {
+          result += '<span style="color:red">*</span>';
+        } else {
+          result += "*";
         }
-        result += "*";
+        if (i % 10 === 0) {
+          result += "<br>";
+        }
       }
-      document.getElementById("square").innerText = result;
+      document.getElementById("square").innerHTML = result;
       //   Antra užduotis
 
       // Trečia užduotis
