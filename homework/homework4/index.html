@@ -15,6 +15,8 @@
     <p id="moneta"></p>
     <p id="vinys1"></p>
     <p id="vinys2"></p>
+    <p id="line1"></p>
+    <p id="line2"></p>
     <script>
       function rand(min, max) {
         min = Math.ceil(min);
@@ -49,16 +51,16 @@
       document.getElementById("numbers1").innerText = textLine1;
       //   b) Tris kartus iškritus herbui
       let textLine2 = "";
-      let herbuSkaicius = 0;
+      let herbuKiekis = 0;
       for (let i = 0; true; i++) {
         let result = rand(0, 1);
         if (result === 0) {
           textLine2 += "H ";
-          herbuSkaicius++;
+          herbuKiekis++;
         } else {
           textLine2 += "S ";
         }
-        if (herbuSkaicius === 3) {
+        if (herbuKiekis === 3) {
           break;
         }
       }
@@ -136,6 +138,25 @@
       document.getElementById(
         "vinys2"
       ).innerText = `Kiek reikia smūgių: ${smugiuKiekis2}`;
+      //   Sugeneruokite stringą, kurį sudarytų 50 atsitiktinių skaičių nuo 1 iki 200, atskirtų tarpais. Skaičiai turi būti unikalūs (t.y. nesikartoti).
+      let skaiciuEilute = "";
+      let skaiciuKiekis = 0;
+      for (let i = 0; true; i++) {
+        let skaicius = rand(1, 200);
+        if (skaiciuEilute.includes(skaicius)) {
+          continue;
+        } else {
+          skaiciuEilute = skaiciuEilute + skaicius + " ";
+          skaiciuKiekis++;
+        }
+        if (skaiciuKiekis === 50) {
+          break;
+        }
+      }
+      document.getElementById(
+        "line1"
+      ).innerText = `Unikalūs skaičiai: ${skaiciuEilute}`;
+      //   Sugeneruokite antrą stringą, pasinaudodami pirmu, palikdami jame tik pirminius skaičius (t.y tokius, kurie dalinasi be liekanos tik iš 1 ir patys savęs). Skaičius stringe sudėliokite didėjimo tvarka, nuo mažiausio iki didžiausio.
     </script>
   </body>
 </html>
