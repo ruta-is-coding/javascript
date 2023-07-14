@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ciklai</title>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center">
+      <p id="square" style="letter-spacing: 20px; line-height: 25px"></p>
+    </div>
+    <p id="numbers1"></p>
+    <p id="numbers2"></p>
+    <p id="numbers3"></p>
+    <script>
+      function rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+      // Pirma užduot🇮s
+      //   Nupieškite kvadratą iš “*”, kurio kraštines sudaro 100 “*”. Panaudokite css stilių, kad kvadratas ekrane atrodytų kvadratinis.
+      let result = "";
+      for (let i = 0; i < 100; i++) {
+        if (i % 10 === 0) {
+          result += "\n";
+        }
+        result += "*";
+      }
+      document.getElementById("square").innerText = result;
+      //   Antra užduotis
+
+      // Trečia užduotis
+      //   Metam monetą. Monetos kritimo rezultatą imituojam rand() funkcija, kur 0 yra herbas, o 1 - skaičius. Monetos metimo rezultatus išvedame į ekraną atskiroje eilutėje: “S” jeigu iškrito skaičius ir “H” jeigu herbas. Suprogramuokite tris skirtingus scenarijus kai monetos metimą stabdome:
+      // a) Iškritus herbui
+      let textLine1 = "";
+      for (let i = 0; true; i++) {
+        let result = rand(0, 1);
+        if (result === 0) {
+          textLine1 += "H ";
+          break;
+        } else {
+          textLine1 += "S ";
+        }
+      }
+      document.getElementById("numbers1").innerText = textLine1;
+      //   b) Tris kartus iškritus herbui
+      let textLine2 = "";
+      let herbuSkaicius = 0;
+      for (let i = 0; true; i++) {
+        let result = rand(0, 1);
+        if (result === 0) {
+          textLine2 += "H ";
+          herbuSkaicius++;
+        } else {
+          textLine2 += "S ";
+        }
+        if (herbuSkaicius === 3) {
+          break;
+        }
+      }
+      document.getElementById("numbers2").innerText = textLine2;
+      //   c) Tris kartus iš eilės iškritus herbui
+      let textLine3 = "";
+      for (let i = 0; true; i++) {
+        let result = rand(0, 1);
+        if (result === 0) {
+          textLine3 += "H ";
+        } else {
+          textLine3 += "S ";
+        }
+        if (textLine3.includes("H H H")) {
+          break;
+        }
+      }
+      document.getElementById("numbers3").innerText = textLine3;
+
+      //   Ketvirta užduotis
+      //   Kazys ir Petras žaidžiai šaškėm. Petras surenka taškų kiekį nuo 10 iki 20, Kazys surenka taškų kiekį nuo 5 iki 25. Vienoje eilutėje išvesti žaidėjų vardus su taškų kiekiu ir “Partiją laimėjo: ​laimėtojo vardas​”. Taškų kiekį generuokite funkcija ​rand()​. Žaidimą laimi tas, kas greičiau surenka 222 taškus. Partijas kartoti tol, kol kažkuris žaidėjas pirmas surenka 222 arba daugiau taškų.
+      let petroTaskaiViso = 0;
+      let kazioTaskaiViso = 0;
+      laimetojas = "";
+      for (let i = 0; true; i++) {
+        let petroTaskai = rand(10, 20);
+        let kazioTaskai = rand(10, 20);
+        petroTaskaiViso += petroTaskai;
+        kazioTaskaiViso += kazioTaskai;
+        if (petroTaskaiViso >= 222 || kazioTaskaiViso >= 222) {
+          break;
+        }
+      }
+      if (petroTaskaiViso > kazioTaskaiViso) {
+        laimetojas = "Petras";
+      } else {
+        laimetojas = "Kazys";
+      }
+      document.write(
+        `Petras surinko: ${petroTaskaiViso} taškų. Kazys surinko: ${kazioTaskaiViso} taškų. Partiją laimėjo: ${laimetojas}`
+      );
+    </script>
+  </body>
+</html>
