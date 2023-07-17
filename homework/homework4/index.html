@@ -7,7 +7,7 @@
   </head>
   <body>
     <div style="display: flex; justify-content: center">
-      <p id="square" style="letter-spacing: 20px; line-height: 25px"></p>
+      <p id="square" style="letter-spacing: 10px; line-height: 15px"></p>
     </div>
     <p id="numbers1"></p>
     <p id="numbers2"></p>
@@ -26,17 +26,29 @@
       // Pirma ir antra užduotys
       //   Nupieškite kvadratą iš “*”, kurio kraštines sudaro 100 “*”. Panaudokite css stilių, kad kvadratas ekrane atrodytų kvadratinis.
       let result = "";
-      for (let i = 1; i <= 100; i++) {
-        if (i % 11 === 1 || i % 9 === 1) {
-          result += '<span style="color:red">*</span>';
-        } else {
-          result += "*";
+      let size = 25;
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          if (y === x || x === size - y - 1) {
+            result += '<span style="color:red">*</span>';
+          } else {
+            result += "*";
+          }
         }
-        if (i % 10 === 0) {
-          result += "<br>";
-        }
+        result += "<br/>";
       }
       document.getElementById("square").innerHTML = result;
+      // let result = "";
+      // for (let i = 1; i <= 100; i++) {
+      //   if (i % 11 === 1 || i % 9 === 1) {
+      //     result += '<span style="color:red">*</span>';
+      //   } else {
+      //     result += "*";
+      //   }
+      //   if (i % 10 === 0) {
+      //     result += "<br>";
+      //   }
+      // }
 
       // Trečia užduotis
       //   Metam monetą. Monetos kritimo rezultatą imituojam rand() funkcija, kur 0 yra herbas, o 1 - skaičius. Monetos metimo rezultatus išvedame į ekraną atskiroje eilutėje: “S” jeigu iškrito skaičius ir “H” jeigu herbas. Suprogramuokite tris skirtingus scenarijus kai monetos metimą stabdome:
