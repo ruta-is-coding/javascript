@@ -12,7 +12,6 @@
     <p id="numbers1"></p>
     <p id="numbers2"></p>
     <p id="numbers3"></p>
-    <p id="moneta"></p>
     <p id="vinys1"></p>
     <p id="vinys2"></p>
     <p id="line1"></p>
@@ -54,7 +53,7 @@
       //   Metam monetą. Monetos kritimo rezultatą imituojam rand() funkcija, kur 0 yra herbas, o 1 - skaičius. Monetos metimo rezultatus išvedame į ekraną atskiroje eilutėje: “S” jeigu iškrito skaičius ir “H” jeigu herbas. Suprogramuokite tris skirtingus scenarijus kai monetos metimą stabdome:
       // a) Iškritus herbui
       let textLine1 = "";
-      for (let i = 0; true; i++) {
+      while (true) {
         let result = rand(0, 1);
         if (result === 0) {
           textLine1 += "H ";
@@ -67,7 +66,7 @@
       //   b) Tris kartus iškritus herbui
       let textLine2 = "";
       let herbuKiekis = 0;
-      for (let i = 0; true; i++) {
+      while (true) {
         let result = rand(0, 1);
         if (result === 0) {
           textLine2 += "H ";
@@ -82,7 +81,7 @@
       document.getElementById("numbers2").innerText = textLine2;
       //   c) Tris kartus iš eilės iškritus herbui
       let textLine3 = "";
-      for (let i = 0; true; i++) {
+      while (true) {
         let result = rand(0, 1);
         if (result === 0) {
           textLine3 += "H ";
@@ -100,23 +99,40 @@
       let petroTaskaiViso = 0;
       let kazioTaskaiViso = 0;
       laimetojas = "";
-      for (let i = 0; true; i++) {
+      while (true) {
         let petroTaskai = rand(10, 20);
-        let kazioTaskai = rand(10, 20);
+        let kazioTaskai = rand(5, 25);
+        if (petroTaskai > kazioTaskai) {
+          document.write(
+            `<p>Petro taškai: ${petroTaskai}. Kazio taškai: ${kazioTaskai}. Partiją laimėjo: Petras</p>`
+          );
+        } else if (petroTaskai === kazioTaskai) {
+          document.write(
+            `<p>Petro taškai: ${petroTaskai}. Kazio taškai: ${kazioTaskai}. Įvyko lygiosios</p>`
+          );
+        } else {
+          document.write(
+            `<p>Petro taškai: ${petroTaskai}. Kazio taškai: ${kazioTaskai}. Partiją laimėjo: Kazys</p>`
+          );
+        }
+
         petroTaskaiViso += petroTaskai;
         kazioTaskaiViso += kazioTaskai;
+
         if (petroTaskaiViso >= 222 || kazioTaskaiViso >= 222) {
           break;
         }
       }
       if (petroTaskaiViso > kazioTaskaiViso) {
-        laimetojas = "Petras";
+        laimetojas = "Žaidimą laimėjo: Petras";
+      } else if (petroTaskaiViso === kazioTaskaiViso) {
+        laimetojas = "Įvyko lygiosios";
       } else {
-        laimetojas = "Kazys";
+        laimetojas = "Žaidimą laimėjo: Kazys";
       }
-      document.getElementById(
-        "moneta"
-      ).innerText = `Petras surinko: ${petroTaskaiViso} taškų. Kazys surinko: ${kazioTaskaiViso} taškų. Partiją laimėjo: ${laimetojas}`;
+      document.write(
+        `<p>Petras surinko: ${petroTaskaiViso} taškų. Kazys surinko: ${kazioTaskaiViso} taškų. ${laimetojas}</p>`
+      );
       //   Penkta užduotis
       // Sumodeliuokite vinies kalimą. Įkalimo gylį sumodeliuokite pasinaudodami rand() funkcija. Vinies ilgis 8.5cm (pilnai sulenda į lentą).
       // a) “Įkalkite” 5 vinis mažais smūgiais. Vienas smūgis vinį įkala 5-20 mm. Suskaičiuokite kiek reikia smūgių.
@@ -156,7 +172,7 @@
       //   Sugeneruokite stringą, kurį sudarytų 50 atsitiktinių skaičių nuo 1 iki 200, atskirtų tarpais. Skaičiai turi būti unikalūs (t.y. nesikartoti).
       let skaiciuEilute = "";
       let skaiciuKiekis = 0;
-      for (let i = 0; true; i++) {
+      while (true) {
         let skaicius = rand(1, 200);
         if (skaiciuEilute.includes(skaicius)) {
           continue;
