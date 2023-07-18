@@ -60,11 +60,7 @@
       const oddIndexesAray = [];
       const evenIndexesAray = [];
       for (let i = 0; i < 40; i++) {
-        if (i === 0) {
-          evenIndexesAray.push(newArray[i]);
-        } else if (i === 1) {
-          oddIndexesAray.push(newArray[i]);
-        } else if (i % 2 === 0) {
+        if (i % 2 === 0) {
           evenIndexesAray.push(newArray[i]);
         } else {
           oddIndexesAray.push(newArray[i]);
