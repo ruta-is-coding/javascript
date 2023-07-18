@@ -50,6 +50,37 @@
         newArray.push(newNumber);
       }
       document.write(`Naujas masyvas:<br>${newArray}<br><br>`);
+      //   e) Papildykite masyvą papildomais 10 elementų su reikšmėmis nuo 5 iki 25, kad bendras masyvas padidėtų iki indekso 39;
+      for (let i = 0; i < 10; i++) {
+        let randomNumber = rand(5, 25);
+        newArray[newArray.length] = randomNumber;
+      }
+      document.write(`Dar ilgesnis naujas masyvas:<br>${newArray}<br><br>`);
+      //   f) Iš masyvo elementų sukurkite du naujus masyvus. Vienas turi būti sudarytas iš neporinių indeksų reikšmių, o kitas iš porinių;
+      const oddIndexesAray = [];
+      const evenIndexesAray = [];
+      for (let i = 0; i < 40; i++) {
+        if (i === 0) {
+          evenIndexesAray.push(newArray[i]);
+        } else if (i === 1) {
+          oddIndexesAray.push(newArray[i]);
+        } else if (i % 2 === 0) {
+          evenIndexesAray.push(newArray[i]);
+        } else {
+          oddIndexesAray.push(newArray[i]);
+        }
+      }
+      document.write(`Neporinių indeksų masyvas: ${oddIndexesAray}<br><br>`);
+      document.write(`Porinių indeksų masyvas: ${evenIndexesAray}<br><br>`);
+      //   g) Pirminio masyvo elementus su poriniais indeksais padarykite lygius 0 jeigu jie didesni už 15;
+      for (let i = 0; i < evenIndexesAray.length; i++) {
+        if (evenIndexesAray[i] > 15) {
+          evenIndexesAray[i] = 0;
+        }
+      }
+      document.write(
+        `Porinių indeksų masyvas su nuliais: ${evenIndexesAray}<br><br>`
+      );
     </script>
   </body>
 </html>
