@@ -17,32 +17,37 @@
       const randArray = [];
       for (let i = 0; i < 30; i++) {
         randArray.push(rand(5, 25));
+        // Kitas variantas - array[i]=rand(5,25);
       }
-      document.write(`Masyvas:<br>${randArray}<br><br>`);
+      document.write(`<p>Pirminis masyvas:</p>${randArray}<br><br>`);
+
       // 1. Naudodamiesi 1 uždavinio masyvu:
       // a) Suskaičiuokite kiek masyve yra reikšmių didesnių už 10;
-      let moreThan10 = 0;
-      for (let i = 0; i < 30; i++) {
-        if (randArray[i] > 10) moreThan10++;
+      let counter = 0;
+      for (const value of randArray) {
+        if (value > 10) counter++;
       }
-      document.write(`Kiek reikšmių >10: ${moreThan10}<br>`);
+      document.write(`<p>Kiek reikšmių >10:${counter}</p>`);
+
       //   b) Raskite didžiausią masyvo reikšmę ir jos indeksą arba indeksus jeigu yra keli;
       let maxValue = Math.max(...randArray);
-      const indexes = [];
-      let maxValueIndex = randArray.indexOf(maxValue);
-      while (maxValueIndex !== -1) {
-        indexes.push(maxValueIndex);
-        maxValueIndex = randArray.indexOf(maxValue, maxValueIndex + 1);
+      let indexes = [];
+      for (const i in randArray) {
+        if (randArray[i] === maxValue) {
+          indexes.push(i);
+        }
       }
       document.write(
-        `Maksimali masyvo reikšmė yra ${maxValue}, o jos indeksas/-i yra ${indexes}<br>`
+        `<p>Maksimali masyvo reikšmė yra ${maxValue}, o jos indeksas/-i yra ${indexes}</p>`
       );
+
       //   c) Suskaičiuokite visų porinių (lyginių) indeksų reikšmių sumą;
       let sum = 0;
       for (let i = 0; i < 30; i++) {
-        if (randArray[i] % 2 === 0) sum += randArray[i];
+        if (i % 2 === 0) sum += randArray[i];
       }
-      document.write(`Visų lyginių indeksų reikšmių suma: ${sum}<br><br>`);
+      document.write(`<p>Visų lyginių indeksų reikšmių suma: ${sum}</p>`);
+
       //   d) Sukurkite naują masyvą, kurio reikšmės yra 1 uždavinio masyvo reikšmes minus tos reikšmės indeksas;
       const newArray = [];
       for (let i = 0; i < 30; i++) {
@@ -77,6 +82,7 @@
       document.write(
         `Porinių indeksų masyvas su nuliais: ${evenIndexesAray}<br><br>`
       );
+      // h) Naudodami funkciją splice() iš masyvo ištrinkite visus elementus kurių reikšmės didesnės už 10;
     </script>
   </body>
 </html>
