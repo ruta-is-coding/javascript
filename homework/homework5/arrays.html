@@ -17,7 +17,7 @@
       const randArray = [];
       for (let i = 0; i < 30; i++) {
         randArray.push(rand(5, 25));
-        // Kitas variantas - array[i]=rand(5,25);
+        // Kitas variantas - randArray[i]=rand(5,25);
       }
       document.write(`<p>Pirminis masyvas:</p>${randArray}<br><br>`);
 
@@ -27,7 +27,7 @@
       for (const value of randArray) {
         if (value > 10) counter++;
       }
-      document.write(`<p>Kiek reikšmių >10:${counter}</p>`);
+      document.write(`<p>Kiek reikšmių >10: ${counter}</p>`);
 
       //   b) Raskite didžiausią masyvo reikšmę ir jos indeksą arba indeksus jeigu yra keli;
       let maxValue = Math.max(...randArray);
@@ -38,7 +38,9 @@
         }
       }
       document.write(
-        `<p>Maksimali masyvo reikšmė yra ${maxValue}, o jos indeksas/-i yra ${indexes}</p>`
+        `<p>Maksimali masyvo reikšmė yra ${maxValue}, o jos indeksas/-i yra ${indexes.join(
+          ", "
+        )}</p>`
       );
 
       //   c) Suskaičiuokite visų porinių (lyginių) indeksų reikšmių sumą;
@@ -54,35 +56,51 @@
         let newNumber = randArray[i] - i;
         newArray.push(newNumber);
       }
-      document.write(`Naujas masyvas:<br>${newArray}<br><br>`);
+      document.write(`<p>Naujas masyvas:<br>${newArray}</p>`);
       //   e) Papildykite masyvą papildomais 10 elementų su reikšmėmis nuo 5 iki 25, kad bendras masyvas padidėtų iki indekso 39;
       for (let i = 0; i < 10; i++) {
-        let randomNumber = rand(5, 25);
-        newArray[newArray.length] = randomNumber;
+        newArray[newArray.length] = rand(5, 25);
       }
-      document.write(`Dar ilgesnis naujas masyvas:<br>${newArray}<br><br>`);
+      document.write(`<p>Dar ilgesnis naujas masyvas:<br>${newArray}</p>`);
       //   f) Iš masyvo elementų sukurkite du naujus masyvus. Vienas turi būti sudarytas iš neporinių indeksų reikšmių, o kitas iš porinių;
       const oddIndexesAray = [];
       const evenIndexesAray = [];
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < newArray.length; i++) {
         if (i % 2 === 0) {
           evenIndexesAray.push(newArray[i]);
         } else {
           oddIndexesAray.push(newArray[i]);
         }
       }
-      document.write(`Neporinių indeksų masyvas: ${oddIndexesAray}<br><br>`);
-      document.write(`Porinių indeksų masyvas: ${evenIndexesAray}<br><br>`);
+      document.write(`<p>Neporinių indeksų masyvas: ${oddIndexesAray}</p>`);
+      document.write(`<p>Porinių indeksų masyvas: ${evenIndexesAray}</p>`);
       //   g) Pirminio masyvo elementus su poriniais indeksais padarykite lygius 0 jeigu jie didesni už 15;
-      for (let i = 0; i < evenIndexesAray.length; i++) {
-        if (evenIndexesAray[i] > 15) {
-          evenIndexesAray[i] = 0;
+      for (const i in randArray) {
+        if (i % 2 === 0 && randArray[i] > 15) {
+          randArray[i] = 0;
         }
       }
       document.write(
-        `Porinių indeksų masyvas su nuliais: ${evenIndexesAray}<br><br>`
+        `<p>Pirminio masyvo porinių indeksų reikšmės nuliai: ${randArray}</p>`
       );
       // h) Naudodami funkciją splice() iš masyvo ištrinkite visus elementus kurių reikšmės didesnės už 10;
+      for (let i = randArray.length - 1; i >= 0; i--) {
+        if (randArray[i] > 10) {
+          randArray.splice(i, 1);
+        }
+      }
+      document.write(
+        `<p>Iš masyvo ištrintos reikšmės, didesnės nei 10:<br>${randArray}</p>`
+      );
+      // i) Naudodami funkciją splice() iš masyvo ištrinkite visus elementus turinčius porinį indeksą;
+      for (let i = randArray.length - 1; i >= 0; i--) {
+        if (i % 2 === 0) {
+          randArray.splice(i, 1);
+        }
+      }
+      document.write(
+        `<p>Iš masyvo pašalintos reikšmės su lyginiais indeksais: ${randArray}</p>`
+      );
     </script>
   </body>
 </html>
