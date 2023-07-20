@@ -110,6 +110,28 @@
       document.write(
         `<p>Kiek unikalių kombinacijų: ${counterUniqueCombinations}</p>`
       );
+      // 4. Sugeneruokite du masyvus, kurių reikšmės yra atsitiktiniai skaičiai nuo 100 iki 999. Masyvų ilgiai 100. Masyvų reikšmės turi būti unikalios savo masyve (t.y. neturi kartotis).
+      const array5 = [];
+      const array6 = [];
+
+      for (let i = 0; i < 100; i++) {
+        let skaicius = rand(100, 999);
+        if (array5.includes(skaicius)) {
+          continue;
+        } else {
+          array5.push(skaicius);
+        }
+      }
+      document.write(`<p>Masyvas nr. 5: ${array5}</p>`);
+      for (let i = 0; i < 100; i++) {
+        let skaicius = rand(100, 999);
+        if (array6.includes(skaicius)) {
+          continue;
+        } else {
+          array6.push(skaicius);
+        }
+      }
+      document.write(`<p>Masyvas nr. 6: ${array6}</p>`);
     </script>
   </body>
 </html>
