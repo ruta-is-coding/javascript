@@ -13,16 +13,17 @@
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1) + min);
       }
+
       const letterArray = [];
       let counterA = 0;
       let counterB = 0;
       let counterC = 0;
       let counterD = 0;
+
       for (let i = 0; i < 200; i++) {
         let skaicius = rand(1, 4);
         if (skaicius === 1) {
           letterArray[i] = "A";
-          //   letterArray.push("A")
           counterA++;
         } else if (skaicius === 2) {
           letterArray[i] = "B";
@@ -36,76 +37,48 @@
         }
       }
       document.write(
-        `<p>Raidžių masyvas: ${letterArray}</p>+<p>Kiek raidžių A: ${counterA}</p>+<p>Kiek raidžių B: ${counterB}</p>+<p>Kiek raidžių C: ${counterC}</p>+<p>Kiek raidžių D: ${counterD}</p>`
+        `<p style="word-wrap:break-word">Raidžių masyvas: ${letterArray}</p>+<p>Kiek raidžių A: ${counterA}</p>+<p>Kiek raidžių B: ${counterB}</p>+<p>Kiek raidžių C: ${counterC}</p>+<p>Kiek raidžių D: ${counterD}</p>`
       );
-      //   2. Išrūšiuokite 3 uždavinio masyvą pagal abecėlę.
+      //   2. Išrūšiuokite 1 uždavinio masyvą pagal abecėlę.
       letterArray.sort();
-      document.write(`<p>Išrūšiuotų raidžių masyvas: ${letterArray}</p>`);
-      //   3. Sugeneruokite 3 masyvus pagal 3 uždavinio sąlygą. Sudėkite masyvus, sudėdami reiksmes pagal atitinkamus indeksus. Paskaičiuokite kiek unikalių (po vieną, nesikartojančių) reikšmių ir kiek unikalių kombinacijų gavote.
-      const array1 = [];
-      for (let i = 0; i < 200; i++) {
-        let skaicius = rand(1, 4);
-        if (skaicius === 1) {
-          array1[i] = "A";
-        } else if (skaicius === 2) {
-          array1[i] = "B";
-        } else if (skaicius === 3) {
-          array1[i] = "C";
-        } else {
-          array1[i] = "D";
+      document.write(
+        `<p style="word-wrap:break-word">Išrūšiuotų raidžių masyvas: ${letterArray}</p>`
+      );
+      //   3. Sugeneruokite 3 masyvus pagal 1 uždavinio sąlygą. Sudėkite masyvus, sudėdami reiksmes pagal atitinkamus indeksus. Paskaičiuokite kiek unikalių (po vieną, nesikartojančių) reikšmių ir kiek unikalių kombinacijų gavote.
+      function arrayGenerator() {
+        const array = [];
+        for (let i = 0; i < 200; i++) {
+          let skaicius = rand(1, 4);
+          if (skaicius === 1) array[i] = "A";
+          else if (skaicius === 2) array[i] = "B";
+          else if (skaicius === 3) array[i] = "C";
+          else array[i] = "D";
         }
+        return array;
       }
-      document.write(`<p>Masyvas nr. 1: ${array1}</p>`);
 
-      const array2 = [];
-      for (let i = 0; i < 200; i++) {
-        let skaicius = rand(1, 4);
-        if (skaicius === 1) {
-          array2[i] = "A";
-        } else if (skaicius === 2) {
-          array2[i] = "B";
-        } else if (skaicius === 3) {
-          array2[i] = "C";
-        } else {
-          array2[i] = "D";
-        }
-      }
-      document.write(`<p>Masyvas nr. 2: ${array2}</p>`);
+      const pirmas = arrayGenerator();
+      const antras = arrayGenerator();
+      const trecias = arrayGenerator();
 
-      const array3 = [];
-      for (let i = 0; i < 200; i++) {
-        let skaicius = rand(1, 4);
-        if (skaicius === 1) {
-          array3[i] = "A";
-        } else if (skaicius === 2) {
-          array3[i] = "B";
-        } else if (skaicius === 3) {
-          array3[i] = "C";
-        } else {
-          array3[i] = "D";
-        }
-      }
-      document.write(`<p>Masyvas nr. 3: ${array3}</p>`);
-
-      const array4 = [];
+      const masyvas = [];
       let counterUniqueLetters = 0;
-      let counterUniqueCombinations = 0;
-      for (let i in array1) {
-        array4.push(array1[i] + array2[i] + array3[i]);
+      for (let i in pirmas) {
+        masyvas[i] = pirmas[i] + antras[i] + trecias[i];
         if (
-          array1[i] !== array2[i] &&
-          array1[i] !== array3[i] &&
-          array2[i] !== array3[i]
+          pirmas[i] !== antras[i] &&
+          pirmas[i] !== trecias[i] &&
+          antras[i] !== trecias[i]
         )
           counterUniqueLetters++;
-
-        if (array4.includes(array4[i])) {
-          continue;
-        } else {
-          counterUniqueCombinations++;
-        }
       }
-      document.write(`<p>Masyvas nr. 4: ${array4}</p>`);
+
+      let counterUniqueCombinations = 0;
+      for (let i = 0; i < 200; i++) {
+        if (masyvas.includes(masyvas[i])) continue;
+        else counterUniqueCombinations++;
+      }
+      document.write(`<p>Sudėtų raidžių masyvas: ${masyvas}</p>`);
       document.write(`<p>Kiek unikalių reikšmių: ${counterUniqueLetters}</p>`);
       document.write(
         `<p>Kiek unikalių kombinacijų: ${counterUniqueCombinations}</p>`
@@ -115,23 +88,21 @@
       const array6 = [];
 
       for (let i = 0; i < 100; i++) {
-        let skaicius = rand(100, 999);
-        if (array5.includes(skaicius)) {
+        let skaicius5 = rand(100, 999);
+        let skaicius6 = rand(100, 999);
+        if (array5.includes(skaicius5)) {
           continue;
         } else {
-          array5.push(skaicius);
+          array5.push(skaicius5);
         }
-      }
-      document.write(`<p>Masyvas nr. 5: ${array5}</p>`);
-      for (let i = 0; i < 100; i++) {
-        let skaicius = rand(100, 999);
-        if (array6.includes(skaicius)) {
+        if (array6.includes(skaicius6)) {
           continue;
         } else {
-          array6.push(skaicius);
+          array6.push(skaicius6);
         }
       }
-      document.write(`<p>Masyvas nr. 6: ${array6}</p>`);
+      document.write(`<p>Masyvas nr. 1: ${array5}</p>`);
+      document.write(`<p>Masyvas nr. 2: ${array6}</p>`);
     </script>
   </body>
 </html>
