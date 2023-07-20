@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 6 repeat</title>
+    <style>
+      p {
+        word-break: break-all;
+      }
+      span {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 1. Sugeneruokite masyvą, kurio reikšmės atsitiktinės raidės A, B, C ir D, o ilgis 200. Suskaičiuokite kiek yra kiekvienos raidės.
+      function rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      let letters = "ABCD"; //raidžių stringas
+      let array = [];
+      for (let i = 0; i < 200; i++) {
+        let index = rand(0, 3); //sugeneruojame random poziciją
+        array.push(letters[index]); //random raidžių stringo indeksą push'inu į array
+      }
+      document.write(`<p><span>First array: </span>${array}</p><br>`);
+      console.log(array);
+
+      //   2. Išrūšiuokite 1 uždavinio masyvą pagal abecėlę.
+      array.sort();
+      document.write(`<p><span>Sorted array: </span>${array}</p><br>`);
+
+      //   3. Sugeneruokite 3 masyvus pagal 1 uždavinio sąlygą.
+      function generateArray() {
+        let array = [];
+        for (let i = 0; i < 200; i++) {
+          let index = rand(0, 3);
+          array.push(letters[index]);
+        }
+        return array; //return turi būti už for ciklo ribų, nes kitaip negrąžina 200 elementų
+      }
+      const array1 = generateArray();
+      document.write(`<p><span>Array 1: </span>${array1}</p>`);
+      const array2 = generateArray();
+      document.write(`<p><span>Array 2: </span>${array2}</p>`);
+      const array3 = generateArray();
+      document.write(`<p><span>Array 3:</span> ${array3}</p>`);
+      //   Sudėkite masyvus, sudėdami reiksmes pagal atitinkamus indeksus.
+      let newArray = [];
+      for (let i in array1) {
+        let combo = array1[i] + array2[i] + array3[i];
+        newArray.push(combo);
+      }
+      document.write(`<p><span>Array combo:</span> ${newArray}</p>`);
+      //   Paskaičiuokite kiek unikalių (po vieną, nesikartojančių) reikšmių ir kiek unikalių kombinacijų gavote.
+      let counterReiksmes = 0;
+      for (const i in newArray) {
+        if (
+          array1[i] !== array2[i] &&
+          array1[i] !== array3[i] &&
+          array2[i] !== array3[i]
+        )
+          counterReiksmes++;
+      }
+      document.write(`<p><span>Unique values:</span> ${counterReiksmes}</p>`);
+      let counterOfUniqueCombos = 0;
+      for (const value1 of newArray) {
+        //čia turi būti value of
+        let counterOfTheSameCombos = 0; //counteris turi būti viduje
+        for (const value2 of newArray) {
+          //value1 pirmame cikle, ir value2 antrame
+          if (value1 === value2) {
+            //tikrinimas
+            counterOfTheSameCombos++;
+          }
+        }
+        if (counterOfTheSameCombos === 1) counterOfUniqueCombos++;
+      }
+      document.write(
+        `<p><span>Unique combos:</span> ${counterOfUniqueCombos}</p>`
+      );
+    </script>
+  </body>
+</html>
