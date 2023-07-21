@@ -52,7 +52,7 @@
       document.write(`<p><span>Array 3:</span> ${array3}</p>`);
       //   Sudėkite masyvus, sudėdami reiksmes pagal atitinkamus indeksus.
       let newArray = [];
-      for (let i in array1) {
+      for (const i in array1) {
         let combo = array1[i] + array2[i] + array3[i];
         newArray.push(combo);
       }
