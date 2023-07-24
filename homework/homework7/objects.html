@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects</title>
+    <style>
+      body {
+        background: linear-gradient(
+          270deg,
+          rgba(254, 255, 42, 1) 0%,
+          rgba(225, 255, 13, 1) 50%,
+          rgba(134, 255, 0, 1) 100%
+        );
+        margin: 0;
+      }
+      .forma {
+        display: flex;
+        flex-direction: column;
+        max-width: 45%;
+        margin: 50px auto;
+      }
+      label,
+      input {
+        display: block;
+        border: none;
+        border-radius: 3px;
+      }
+      label {
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 25px;
+        text-align: center;
+      }
+      input {
+        margin-bottom: 20px;
+        padding: 10px;
+      }
+      button {
+        font-size: 25px;
+        margin-top: 10px;
+        background-color: rgb(78, 197, 9);
+        border: none;
+        border-radius: 3px;
+        padding: 5px 15px;
+        font-weight: bold;
+        max-width: 70%;
+        align-self: center;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="forma">
+      <label for="name">Vardas:</label>
+      <input type="text" id="name" name="name" />
+      <label for="surname">Pavardė:</label>
+      <input type="text" id="surname" name="surname" />
+      <label for="username">Vartotojo vardas:</label>
+      <input type="text" id="username" name="username" />
+      <label for="email">El. paštas:</label>
+      <input type="email" id="email" name="email" />
+      <label for="password">Slaptažodis:</label>
+      <input type="password" id="password" name="password" />
+      <button onclick="parseInputs()">Submit</button>
+    </div>
+    <script>
+      // 1. Sukurkite 5 skirtingus objektus su šiais laukų pavadinimais: gyvunoPavadinimas, amzius, arGaliSkristi, vardas, spalva. Jiems sugalvokite ir priskirkite savybiu reikšmes. Ir juos sudėkite į masyvą.
+      const array = [];
+      const kate = {
+        gyvunoPavadinimas: "katė",
+        amzius: 3,
+        arGaliSkristi: "ne",
+        vardas: "Rainė",
+        spalva: "ruda",
+      };
+      array.push(kate);
+      const suo = {
+        gyvunoPavadinimas: "šuo",
+        amzius: 2,
+        arGaliSkristi: "ne",
+        vardas: "Reksis",
+        spalva: "juoda",
+      };
+      array.push(suo);
+      const papuga = {
+        gyvunoPavadinimas: "papūga",
+        amzius: 5,
+        arGaliSkristi: "taip",
+        vardas: "Snaigė",
+        spalva: "balta",
+      };
+      array.push(papuga);
+      const vezlys = {
+        gyvunoPavadinimas: "vėžlys",
+        amzius: 8,
+        arGaliSkristi: "ne",
+        vardas: "Rožytė",
+        spalva: "pilka",
+      };
+      array.push(vezlys);
+      const ziurkenas = {
+        gyvunoPavadinimas: "žiurkėnas",
+        amzius: 3,
+        arGaliSkristi: "ne",
+        vardas: "Keksas",
+        spalva: "ruda",
+      };
+      array.push(ziurkenas);
+      console.log(array);
+      //   2. Sukurkite funkciją, kuri gražina gyvūno aprašymą: tarkime turime gyvūną: Šikšnosparnis, 14, true, Arūnas Šikšna, Pilkas Funkcija gražina: "Sveiki, aš Arūnas Šikšna, man yra 14 metų ir aš esu Šikšnosparnis, mano odos spalva: Pilkas ir aš galiu skristi!" ir rezultatą išveskite su console.log į ekraną.
+      function animalDescription(gyvunas) {
+        if (gyvunas.arGaliSkristi === "taip") gyvunas.arGaliSkristi = "galiu";
+        else gyvunas.arGaliSkristi = "negaliu";
+        return `Sveiki, aš ${gyvunas.vardas}, man yra ${gyvunas.amzius} metų ir aš esu ${gyvunas.gyvunoPavadinimas}. Mano odos spalva - ${gyvunas.spalva} ir aš ${gyvunas.arGaliSkristi} skristi!`;
+      }
+      console.log(animalDescription(kate));
+      //   3. Sukurkite du atskirus masyvus kuriuose išskirstysime skraidančius ir neskraidančius gyvūnus. Tada padarome kovą ir laimės tie gyvūnai, kurių buvo daugiau. pvz: skraidančių gyvūnų masyve yra 3 elementai o neskraidančių gyvūnų masyve yra 2 elementai, todėl skraidantys gyvūnai laimi. Rezultatą išvesti su console.log
+      const skraidantysGyvunai = [];
+      const neskraidantysGyvunai = [];
+      for (const value of array) {
+        if (value.arGaliSkristi === "taip") skraidantysGyvunai.push(value);
+        else neskraidantysGyvunai.push(value);
+      }
+      console.log(skraidantysGyvunai);
+      console.log(neskraidantysGyvunai);
+      if (skraidantysGyvunai.length > neskraidantysGyvunai.length)
+        console.log("Laimėjo skraidantys gyvūnai");
+      else if (skraidantysGyvunai.length === neskraidantysGyvunai.length)
+        console.log("Įvyko lygiosios.");
+      else console.log("Laimėjo neskraidantys gyvūnai");
+      //   4. Sukurkite registracijos formą html'e kuris registruotų vartotojų: Vardą, pavardę, username, el.paštą, slaptažodį. Paspaudus mygtuką register į žmonių masyvą turėtų užsiregistruoti naujas varotojas. Masyvą išveskite į lentelę po forma. (Rekomenduoju šiek tiek stilizuoti, kad prisimintumėte css bei html sintaksę)
+      const userData = [];
+      function parseInputs() {
+        let nameInput = document.querySelector("#name");
+        let surnameInput = document.querySelector("#surname");
+        let usernameInput = document.querySelector("#username");
+        let emailInput = document.querySelector("#email");
+        let passwordInput = document.querySelector("#password");
+        userData.push({
+          name: nameInput.value,
+          surname: surnameInput.value,
+          username: usernameInput.value,
+          email: emailInput.value,
+          password: passwordInput.value,
+        });
+        console.log(userData);
+      }
+    </script>
+  </body>
+</html>
