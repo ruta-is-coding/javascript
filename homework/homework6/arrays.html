@@ -133,8 +133,11 @@
       console.log(arrayOne);
       console.log(arrayTwo);
       for (let i = 0; i < 100; i++) {
-        if (arrayOne.includes(arrayTwo[i])) {
-          arrayTask6.push(arrayTwo[i]);
+        while (true) {
+          if (arrayOne.includes(arrayTwo[i])) {
+            arrayTask6.push(arrayTwo[i]);
+          }
+          break;
         }
       }
       document.write(`<p>Šeštos užduoties masyvas: ${arrayTask6}</p>`);
