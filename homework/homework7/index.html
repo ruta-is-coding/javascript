@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multidimensional arrays</title>
+  </head>
+  <body>
+    <script>
+      function rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+      // Sugeneruokite masyvą iš 10 elementų, kurio elementai būtų masyvai iš 5 elementų su reikšmėmis nuo 5 iki 25.
+      const array = [];
+      for (let a = 0; a < 10; a++) {
+        array[a] = []; //nurodome, kad array elemento tipas yra masyvas
+        for (let b = 0; b < 5; b++) {
+          array[a][b] = rand(5, 25); //kreipiamės į masyvo masyve elementą
+        }
+      }
+      console.log(array);
+      document.write(`<p>Masyvas: ${array}</p>`);
+      //   1. Naudodamiesi 1 uždavinio masyvu:
+      // a) Suskaičiuokite kiek masyve yra elementų didesnių už 10;
+      let counter = 0;
+      for (const child of array) {
+        for (const value of child) {
+          if (value > 10) counter++;
+        }
+      }
+      document.write(
+        `<p>Kiek masyve yra elementų didesnių už 10: <strong>${counter}</strong></p>`
+      );
+      // b) Raskite didžiausio elemento reikšmę;
+      let max = 0;
+      for (const child of array) {
+        for (const value of child) {
+          if (value > max) max = value;
+        }
+      }
+      document.write(`Didžiausia masyvo reikšmė: ${max}`);
+      // c) Suskaičiuokite kiekvieno antro lygio masyvų su vienodais indeksais sumas (t.y. suma reikšmių turinčių indeksą 0, 1 ir t.t.)
+
+      // d) Visus antro lygio masyvus “pailginkite” iki 7 elementų
+      for (const value of array) {
+        for (let i = 0; i < 2; i++) {
+          value.push(rand(5, 25));
+        }
+      }
+      console.log(array);
+      // 2. Sukurkite masyvą iš 10 elementų. Kiekvienas masyvo elementas turi būti masyvas su atsitiktiniu kiekiu nuo 2 iki 20 elementų. Elementų reikšmės atsitiktinai parinktos raidės iš intervalo A-Z. Išrūšiuokite antro lygio masyvus pagal abėcėlę (t.y. tuos kur su raidėm).
+      const array2 = [];
+      const alphabet = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "I",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+      ];
+
+      for (let a = 0; a < 10; a++) {
+        array2[a] = [];
+        let length = rand(2, 20);
+        for (let b = 0; b < length; b++) {
+          array2[a][b] = alphabet[rand(0, 25)];
+        }
+        array2[a].sort();
+      }
+      console.log(array2);
+    </script>
+  </body>
+</html>
