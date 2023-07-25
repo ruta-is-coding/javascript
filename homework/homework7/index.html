@@ -20,7 +20,7 @@
           array[a][b] = rand(5, 25); //kreipiamės į masyvo masyve elementą
         }
       }
-      console.log(array);
+      console.table(array);
       document.write(`<p>Masyvas: ${array}</p>`);
       //   1. Naudodamiesi 1 uždavinio masyvu:
       // a) Suskaičiuokite kiek masyve yra elementų didesnių už 10;
@@ -43,14 +43,24 @@
       //   let max = Math.max(...array.flat());
       document.write(`Didžiausia masyvo reikšmė: ${max}`);
       // c) Suskaičiuokite kiekvieno antro lygio masyvų su vienodais indeksais sumas (t.y. suma reikšmių turinčių indeksą 0, 1 ir t.t.)
+      const sum = [];
 
+      for (let i = 0; i < 5; i++) {
+        let sumValue = 0;
+        for (const value of array) {
+          sumValue += value[i];
+        }
+        sum.push(sumValue);
+      }
+
+      document.write(`<p>Sumos pagal indeksus: ${sum.join(", ")}</p>`);
       // d) Visus antro lygio masyvus “pailginkite” iki 7 elementų
       for (const value of array) {
         for (let i = 0; i < 2; i++) {
           value.push(rand(5, 25));
         }
       }
-      console.log(array);
+      console.table(array);
       // 2. Sukurkite masyvą iš 10 elementų. Kiekvienas masyvo elementas turi būti masyvas su atsitiktiniu kiekiu nuo 2 iki 20 elementų. Elementų reikšmės atsitiktinai parinktos raidės iš intervalo A-Z. Išrūšiuokite antro lygio masyvus pagal abėcėlę (t.y. tuos kur su raidėm).
       const array2 = [];
       const alphabet = [
@@ -90,7 +100,7 @@
         }
         array2[a].sort();
       }
-      console.log(array2);
+      console.table(array2);
       // 3. Išrūšiuokite antrojo uždavinio pirmo lygio masyvą taip, kad elementai kurių masyvai trumpiausi eitų pradžioje. Masyvai kurie turi bent vieną “K” raidę, visada turi būti didžiojo masyvo pradžioje.
     </script>
   </body>
