@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+.box {
+  width: 70%;
+  height: 240px;
+  border-bottom: 1px solid lightgray;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  padding: 30px 0;
+}
+.thumbnail {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.thumbnail img {
+  max-height: 100%;
+  max-width: 80%;
+}
+.thumbnail p {
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background-color: orangered;
+  border-radius: 3px;
+  padding: 5px;
+  right: 0%;
+  top: 0%;
+  margin: 0;
+}
+.description {
+  width: 50%;
+}
+.buy {
+  width: 20%;
+  position: relative;
+}
+.buy p {
+  display: inline-block;
+  margin: 0;
+  letter-spacing: 1px;
+}
+.buy .one {
+  font-weight: bold;
+  font-size: 28px;
+  color: orangered;
+}
+.buy .two {
+  text-decoration: line-through;
+  font-size: 18px;
+  vertical-align: top;
+  padding-left: 10px;
+  color: rgb(83, 83, 83);
+}
+.buy button {
+  margin: 0;
+  width: 100%;
+  background-color: rgb(255, 230, 0);
+  border: none;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 3px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  cursor: pointer;
+}
+.description p:first-child {
+  margin: 0;
+  color: blue;
+}
