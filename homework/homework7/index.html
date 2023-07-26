@@ -43,17 +43,16 @@
       //   let max = Math.max(...array.flat());
       document.write(`Didžiausia masyvo reikšmė: ${max}`);
       // c) Suskaičiuokite kiekvieno antro lygio masyvų su vienodais indeksais sumas (t.y. suma reikšmių turinčių indeksą 0, 1 ir t.t.)
-      const sum = [];
-
+      const sums = [];
       for (let i = 0; i < 5; i++) {
         let sumValue = 0;
         for (const value of array) {
           sumValue += value[i];
         }
-        sum.push(sumValue);
+        sums.push(sumValue);
       }
 
-      document.write(`<p>Sumos pagal indeksus: ${sum.join(", ")}</p>`);
+      document.write(`<p>Sumos pagal indeksus: ${sums.join(", ")}</p>`);
       // d) Visus antro lygio masyvus “pailginkite” iki 7 elementų
       for (const value of array) {
         for (let i = 0; i < 2; i++) {
@@ -96,12 +95,19 @@
         array2[a] = [];
         let length = rand(2, 20);
         for (let b = 0; b < length; b++) {
-          array2[a][b] = alphabet[rand(0, 25)];
+          array2[a][b] = alphabet[rand(0, alphabet.length - 1)];
         }
         array2[a].sort();
       }
       console.table(array2);
       // 3. Išrūšiuokite antrojo uždavinio pirmo lygio masyvą taip, kad elementai kurių masyvai trumpiausi eitų pradžioje. Masyvai kurie turi bent vieną “K” raidę, visada turi būti didžiojo masyvo pradžioje.
+      array2.sort((a, b) => a.length - b.length);
+      array2.sort((a, b) => {
+        if (a.includes("K") && !b.includes("K")) return -1;
+        else if (!a.includes("K") && b.includes("K")) return 1;
+        else return a.length - b.length;
+      });
+      console.table(array2);
     </script>
   </body>
 </html>
