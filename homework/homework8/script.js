@@ -387,6 +387,7 @@ const productObject = {
     },
   ],
 };
+
 for (let i = 0; i < productObject.products.length; i++) {
   document.querySelector(
     `#no${i + 1} .thumbnail`

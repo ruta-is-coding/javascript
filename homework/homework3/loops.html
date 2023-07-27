@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loops</title>
+  </head>
+  <style>
+    /* #stars {
+      word-break: break-all;
+    } */
+  </style>
+  <body>
+    <p id="stars"></p>
+    <script>
+      // Naršyklėje nupieškite linija iš 400 “*”.
+      // Naudodami css stilių “suskaldykite” liniją taip, kad visos žvaigždutės matytųsi ekrane;
+      // Programiškai “suskaldykite” žvaigždutes taip, kad vienoje eilutėje nebūtų daugiau nei 50 “*”;
+      let zvaigzduciuStringas = "";
+      for (let i = 0; i < 400; i++) {
+        if (i % 50 === 0) zvaigzduciuStringas += "<br>"; //remainder operatorius grazina liekana
+        zvaigzduciuStringas += "*";
+      }
+      //   document.write("<p>"+zvaigzduciuStringas+"</p>") //pirmas variantas
+      //   document.getElementById("stars").innerText = zvaigzduciuStringas; //antras variantas
+      document.querySelector("#stars").innerHTML = zvaigzduciuStringas;
+      // Sugeneruokite masyvą iš 30 elementų (indeksai nuo 0 iki 29), kurių reikšmės yra atsitiktiniai skaičiai nuo 5 iki 25.
+      // Naudodamiesi 1 uždavinio masyvu:
+      // Suskaičiuokite kiek masyve yra reikšmių didesnių už 10;
+
+      function rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+      let masyvas = [];
+      let counter = 0;
+      for (let i = 0; i < 30; i++) {
+        // masyvas.push(rand(5,25));
+        masyvas[i] = rand(5, 25); //masyvas[i] yra skaičius, kurį sugeneruojame
+        if (masyvas[i] > 10) counter++; //prie counterio pridedame 1, kai skaičius daugiau už 10
+      }
+      document.write(`<p>${masyvas}</p>`);
+      document.write(`<p>Kiek daugiau nei 10: ${counter}</p>`);
+      // Raskite didžiausią masyvo reikšmę ir jos indeksą arba indeksus jeigu yra keli;
+      let max = Math.max(...masyvas);
+      document.write(`<p>Maksimumas: ${max}</p>`);
+      //Maksimumo indeksų radimas
+      let indexesOfMax = []; //susikuriame array į kurį pushinsime maksimumo indeksus
+      for (const i in masyvas) {
+        if (masyvas[i] === max) {
+          indexesOfMax.push(i);
+        }
+      }
+      document.write(indexesOfMax);
+      //   Sugeneruokite du masyvus, kurių reikšmės yra atsitiktiniai skaičiai nuo 100 iki 999. Masyvų ilgiai 100. Masyvų reikšmės turi būti unikalios savo masyve (t.y. neturi kartotis).
+      let array1 = [];
+      let array2 = [];
+      for (let i = 0; i < 100; i++) {
+        //pirmiausia uzsikuria didysis for ciklas, tada sukasi pirmas while ciklas, kol atranda nesikartojanti skaiciu ir ji ipushina, tada sukasi antras while ciklas. po abieju while ciklu didysis ciklas suka nauja cikla.
+        while (true) {
+          let skaicius1 = rand(100, 999); //sugeneruojame random skaiciu
+          if (!array1.includes(skaicius1)) {
+            //!includes reiskia, kad to random skaiciaus nera pries tai buvusioje eiluteje
+            array1.push(skaicius1);
+            break;
+          } //Jeigu skaiciaus1 nera pries tai sugeneruotame array1, tai ji pushiname ir ciklas nutruksta. jeigu yra, while ciklas tesiasi tol, kol ipushiname skaiciu1
+        }
+        while (true) {
+          let skaicius2 = rand(100, 999);
+          if (!array2.includes(skaicius2)) {
+            array2.push(skaicius2);
+            break;
+          }
+        }
+      }
+      document.write(`<p>Array1: ${array1}</p>`);
+      document.write(`<p>Array2: ${array2}</p>`);
+      console.log(array1.length);
+      console.log(array2.length);
+    </script>
+  </body>
+</html>
