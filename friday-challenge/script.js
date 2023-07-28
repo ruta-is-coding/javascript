@@ -103,5 +103,5 @@ function telefonoNumeris(a) {
     console.log(
       `"(${a[0]}${a[1]}${a[2]}) ${a[3]}${a[4]}${a[5]}-${a[6]}${a[7]}${a[8]}${a[9]}"`
     );
-  } else console.log("Array isn't valid");
+  } else console.log("Data isn't valid");
 }
