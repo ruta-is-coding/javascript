@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ksaveros challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+      }
+      .buttons {
+        display: flex;
+        justify-content: center;
+        margin: 30px auto;
+        gap: 30px;
+      }
+      button {
+        padding: 5px 20px;
+        font-size: 21px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background: linear-gradient(
+          270deg,
+          rgba(255, 209, 0, 1) 0%,
+          rgba(255, 171, 13, 1) 59%,
+          rgba(255, 119, 0, 1) 100%
+        );
+        cursor: pointer;
+      }
+      #result {
+        width: 80%;
+        margin: 100px auto;
+        text-align: center;
+        font-size: 100px;
+        font-family: "Dancing Script", cursive;
+        color: rgba(255, 119, 0, 1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="buttons">
+      <button class="gabriele">Gabrielė</button>
+      <button class="ksavera">Ksavera</button>
+      <button class="rutaJ">Rūta J.</button>
+      <button class="daiva">Daiva</button>
+      <button class="jovita">Jovita</button>
+      <button class="jurgita">Jurgita</button>
+      <button class="rutaS">Rūta S.</button>
+      <button class="karolina">Karolina</button>
+    </div>
+    <p id="result"></p>
+  </body>
+  <script>
+    function run1() {
+      const res = document.querySelector("#result");
+      res.textContent = "Gabrielė";
+    }
+    function run2() {
+      const res = document.querySelector("#result");
+      res.textContent = "Ksavera";
+    }
+    function run3() {
+      const res = document.querySelector("#result");
+      res.textContent = "Rūta";
+    }
+    function run4() {
+      const res = document.querySelector("#result");
+      res.textContent = "Daiva";
+    }
+    function run5() {
+      const res = document.querySelector("#result");
+      res.textContent = "Jovita";
+    }
+    function run6() {
+      const res = document.querySelector("#result");
+      res.textContent = "Jurgita";
+    }
+    function run7() {
+      const res = document.querySelector("#result");
+      res.textContent = "Rūta";
+    }
+    function run8() {
+      const res = document.querySelector("#result");
+      res.textContent = "Karolina";
+    }
+    document.querySelector(".gabriele").addEventListener("click", run1);
+    document.querySelector(".ksavera").addEventListener("click", run2);
+    document.querySelector(".rutaJ").addEventListener("click", run3);
+    document.querySelector(".daiva").addEventListener("click", run4);
+    document.querySelector(".jovita").addEventListener("click", run5);
+    document.querySelector(".jurgita").addEventListener("click", run6);
+    document.querySelector(".rutaS").addEventListener("click", run7);
+    document.querySelector(".karolina").addEventListener("click", run8);
+  </script>
+</html>
