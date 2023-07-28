@@ -79,14 +79,29 @@ function lygineSuma(a, b) {
     console.log(sum1);
     if (sum1 % 2 === 1) console.log(`Suma nelyginė`);
     return sum1;
-  } else if (typeof a === "object" && typeof b === "object") {
+  } else if (Array.isArray(a) && Array.isArray(b)) {
     let sum2 = a.length + b.length;
     console.log(sum2);
     if (sum2 % 2 === 1) console.log(`Suma nelyginė`);
     return sum2;
   }
 }
-// 9. Parašyti funkciją pirminisSkaicius. Funkcija turi vieną kintamąjį. Turi būti patikrinimas, kad kintamasis yra skaičius. Funkcija turi grąžinti ar pateiktas skaičius yra pirminis( pirminis
-// skaičius yra tas, kuris dalinasi tik iš savęs ir tik iš vieneto be liekanos.) (10 taškų)
-// 10. Parašyti funkciją telefonoNumeris. Funkcija turi priimti vieną kintamąjį - masyvą. Masyvo elementai - skaičiai, ilgis - 10. Funkcija turi grąžinti telefono numerį tokiu formatu -
-// "(XXX) XXX-XXXX". (10 taškų)
+// 9. Parašyti funkciją pirminisSkaicius. Funkcija turi vieną kintamąjį. Turi būti patikrinimas, kad kintamasis yra skaičius. Funkcija turi grąžinti ar pateiktas skaičius yra pirminis( pirminis skaičius yra tas, kuris dalinasi tik iš savęs ir tik iš vieneto be liekanos.) (10 taškų)
+function pirminisSkaicius(a) {
+  if (typeof a === "number") console.log(`Kintamasis yra skaičius`);
+}
+// 10. Parašyti funkciją telefonoNumeris. Funkcija turi priimti vieną kintamąjį - masyvą. Masyvo elementai - skaičiai, ilgis - 10. Funkcija turi grąžinti telefono numerį tokiu formatu - "(XXX) XXX-XXXX". (10 taškų)\
+function telefonoNumeris(a) {
+  let numbers = a.filter((value) => typeof value == "number");
+  let validNumbers = a.filter((value) => value >= 0 && value <= 9);
+  if (
+    Array.isArray(a) &&
+    a.length === 10 &&
+    numbers.length === 10 &&
+    validNumbers.length === 10
+  ) {
+    console.log(
+      `"(${a[0]}${a[1]}${a[2]}) ${a[3]}${a[4]}${a[5]}-${a[6]}${a[7]}${a[8]}${a[9]}"`
+    );
+  } else console.log("Array isn't valid");
+}
