@@ -92,13 +92,11 @@ function pirminisSkaicius(a) {
 }
 // 10. Parašyti funkciją telefonoNumeris. Funkcija turi priimti vieną kintamąjį - masyvą. Masyvo elementai - skaičiai, ilgis - 10. Funkcija turi grąžinti telefono numerį tokiu formatu - "(XXX) XXX-XXXX". (10 taškų)\
 function telefonoNumeris(a) {
-  let numbers = a.filter((value) => typeof value == "number");
-  let validNumbers = a.filter((value) => value >= 0 && value <= 9);
   if (
     Array.isArray(a) &&
     a.length === 10 &&
-    numbers.length === 10 &&
-    validNumbers.length === 10
+    a.filter((value) => typeof value == "number").length === 10 &&
+    a.filter((value) => value >= 0 && value <= 9).length === 10
   ) {
     console.log(
       `"(${a[0]}${a[1]}${a[2]}) ${a[3]}${a[4]}${a[5]}-${a[6]}${a[7]}${a[8]}${a[9]}"`
