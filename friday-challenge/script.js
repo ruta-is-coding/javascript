@@ -51,6 +51,27 @@ function bigArray() {
   console.log(`Maksimumas: ${max}`);
 }
 // 7. Sugeneruokite masyvą, kurio reikšmės atsitiktinės raidės A, B, C ir D, o ilgis 100. Suskaičiuokite kiek yra kiekvienos raidės. (7 taškai)
+function lettersArray() {
+  const array2 = [];
+  let counterA = 0;
+  let counterB = 0;
+  let counterC = 0;
+  let counterD = 0;
+  const letters = "ABCD";
+  for (let i = 0; i < 100; i++) {
+    let randomLetter = letters[rand(0, 3)];
+    array2.push(randomLetter);
+    if (randomLetter === "A") counterA++;
+    else if (randomLetter === "B") counterB++;
+    else if (randomLetter === "C") counterC++;
+    else counterD++;
+  }
+  console.log(array2);
+  console.log(`Kiek raidžių A: ${counterA}`);
+  console.log(`Kiek raidžių B: ${counterB}`);
+  console.log(`Kiek raidžių C: ${counterC}`);
+  console.log(`Kiek raidžių D: ${counterD}`);
+}
 // 8. Parašyti funkciją - lygineSuma. Funkcijos parametrai - du kintamieji. Testų reikalavimai - abu kitamieji turi būti arba skaičiai arba masyvai(negali būti vienas skaičius, kitas masyvas).
 // Jei kintamieji skaičiai, grąžinti skaičių sumą, jei kintamieji masyvai - grąžinti masyvų ilgių sumą. Jei abu kintamieji skaičiai arba masyvai, bet suma nelyginė - grąžinti tekstą, kad suma nelyginė. (10 taškų)
 // 9. Parašyti funkciją pirminisSkaicius. Funkcija turi vieną kintamąjį. Turi būti patikrinimas, kad kintamasis yra skaičius. Funkcija turi grąžinti ar pateiktas skaičius yra pirminis( pirminis
