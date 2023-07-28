@@ -89,6 +89,16 @@ function lygineSuma(a, b) {
 // 9. Parašyti funkciją pirminisSkaicius. Funkcija turi vieną kintamąjį. Turi būti patikrinimas, kad kintamasis yra skaičius. Funkcija turi grąžinti ar pateiktas skaičius yra pirminis( pirminis skaičius yra tas, kuris dalinasi tik iš savęs ir tik iš vieneto be liekanos.) (10 taškų)
 function pirminisSkaicius(a) {
   if (typeof a === "number") console.log(`Kintamasis yra skaičius`);
+  if (a === 1) console.log("Skaičius nėra pirminis");
+  if (a === 2) console.log("Skaičius yra pirminis");
+  let counter = 0;
+  for (let i = 2; i < a; i++) {
+    if (a % i === 0) {
+      console.log("Skaičius nėra pirminis");
+      break;
+    } else if (a % i !== 0) counter++;
+    if (counter === a - 2) console.log("Skaičius yra pirminis");
+  }
 }
 // 10. Parašyti funkciją telefonoNumeris. Funkcija turi priimti vieną kintamąjį - masyvą. Masyvo elementai - skaičiai, ilgis - 10. Funkcija turi grąžinti telefono numerį tokiu formatu - "(XXX) XXX-XXXX". (10 taškų)\
 function telefonoNumeris(a) {
