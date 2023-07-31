@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+    <style>
+      .timer {
+        font-size: 50px;
+        font-weight: bold;
+        margin: 30px 30px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      input {
+        margin: 30px 30px 15px;
+        display: block;
+      }
+      .buttons {
+        margin: 0px 30px;
+        display: flex;
+        gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="text"
+      placeholder="Enter time in seconds"
+      name="time"
+      id="time"
+    />
+    <div class="buttons">
+      <button onclick="run()">Start</button>
+      <button onclick="stop()">Stop</button>
+      <button>Reset</button>
+    </div>
+    <div class="timer"></div>
+    <script>
+      //   let time = document.querySelector('[name="time"]').innerText;
+      function run() {
+        let time = document.getElementById("time").value;
+        const interval = setInterval(() => {
+          let minutes = Math.floor(time / 60); //minutes suapvalinamos iki mazesnio sveikojo skaiciaus ir jos yra intervalo viduje
+          let seconds = time - minutes * 60;
+          document.querySelector(
+            ".timer"
+          ).innerHTML = `${minutes} min ${seconds} s`;
+          console.log(time);
+          if (time <= 0) clearInterval(interval);
+          time--;
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
