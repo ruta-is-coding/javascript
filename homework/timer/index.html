@@ -60,9 +60,8 @@
     <script>
       //   let time = document.querySelector('[name="time"]').innerText;
       let interval;
-      let time;
       function run() {
-        time = document.getElementById("time").value;
+        let time = document.getElementById("time").value;
         interval = setInterval(() => {
           let minutes = Math.floor(time / 60); //minutes suapvalinamos iki mazesnio sveikojo skaiciaus ir jos yra intervalo viduje
           let seconds = time - minutes * 60;
