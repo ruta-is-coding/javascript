@@ -8,17 +8,39 @@
       .timer {
         font-size: 50px;
         font-weight: bold;
-        margin: 30px 30px;
+        margin: 10px 30px;
         font-family: Arial, Helvetica, sans-serif;
+        color: rgb(255, 0, 202);
       }
       input {
         margin: 30px 30px 15px;
         display: block;
+        padding: 5px;
+        font-size: 20px;
+        border: 1px solid rgb(255, 0, 202);
+        border-radius: 5px;
+        color: rgb(255, 0, 202);
+      }
+      input::placeholder {
+        color: rgb(255, 0, 202);
       }
       .buttons {
         margin: 0px 30px;
         display: flex;
         gap: 20px;
+      }
+      button {
+        padding: 5px 10px;
+        font-size: 20px;
+        border-radius: 5px;
+        border: none;
+        background: linear-gradient(
+          225deg,
+          rgba(255, 209, 0, 1) 0%,
+          rgba(255, 171, 13, 1) 34%,
+          rgba(255, 0, 202, 1) 100%
+        );
+        color: white;
       }
     </style>
   </head>
@@ -32,14 +54,16 @@
     <div class="buttons">
       <button onclick="run()">Start</button>
       <button onclick="stop()">Stop</button>
-      <button>Reset</button>
+      <button onclick="reset()">Reset</button>
     </div>
     <div class="timer"></div>
     <script>
       //   let time = document.querySelector('[name="time"]').innerText;
+      let interval;
+      let time;
       function run() {
-        let time = document.getElementById("time").value;
-        const interval = setInterval(() => {
+        time = document.getElementById("time").value;
+        interval = setInterval(() => {
           let minutes = Math.floor(time / 60); //minutes suapvalinamos iki mazesnio sveikojo skaiciaus ir jos yra intervalo viduje
           let seconds = time - minutes * 60;
           document.querySelector(
@@ -49,6 +73,14 @@
           if (time <= 0) clearInterval(interval);
           time--;
         }, 1000);
+      }
+      function stop() {
+        clearInterval(interval);
+      }
+      function reset() {
+        interval = clearInterval(interval);
+        document.querySelector(".timer").innerHTML = `0 min 0 s`;
+        document.getElementById("time").value = "";
       }
     </script>
   </body>
