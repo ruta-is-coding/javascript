@@ -47,7 +47,7 @@
   <body>
     <input
       type="text"
-      placeholder="Enter time in seconds"
+      placeholder="Enter the time in minutes"
       name="time"
       id="time"
     />
@@ -63,7 +63,7 @@
       let ran = false;
       let time = 0;
       function run() {
-        if (!ran) time = document.getElementById("time").value;
+        if (!ran) time = document.getElementById("time").value * 60;
         ran = true;
         interval = setInterval(() => {
           let minutes = Math.floor(time / 60); //minutes suapvalinamos iki mazesnio sveikojo skaiciaus ir jos yra intervalo viduje
@@ -72,7 +72,10 @@
             ".timer"
           ).innerHTML = `${minutes} min ${seconds} s`;
           console.log(time);
-          if (time <= 0) clearInterval(interval);
+          if (time <= 0) {
+            clearInterval(interval);
+            time = 0;
+          }
           time--;
         }, 1000);
       }
@@ -83,6 +86,7 @@
         interval = clearInterval(interval);
         document.querySelector(".timer").innerHTML = `0 min 0 s`;
         document.getElementById("time").value = "";
+        time = 0;
       }
     </script>
   </body>
