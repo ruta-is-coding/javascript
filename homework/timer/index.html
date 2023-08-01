@@ -53,15 +53,18 @@
     />
     <div class="buttons">
       <button onclick="run()">Start</button>
-      <button onclick="stop()">Stop</button>
+      <button onclick="pause()">Pause</button>
       <button onclick="reset()">Reset</button>
     </div>
     <div class="timer"></div>
     <script>
       //   let time = document.querySelector('[name="time"]').innerText;
       let interval;
+      let ran = false;
+      let time = 0;
       function run() {
-        let time = document.getElementById("time").value;
+        if (!ran) time = document.getElementById("time").value;
+        ran = true;
         interval = setInterval(() => {
           let minutes = Math.floor(time / 60); //minutes suapvalinamos iki mazesnio sveikojo skaiciaus ir jos yra intervalo viduje
           let seconds = time - minutes * 60;
@@ -73,7 +76,7 @@
           time--;
         }, 1000);
       }
-      function stop() {
+      function pause() {
         clearInterval(interval);
       }
       function reset() {
