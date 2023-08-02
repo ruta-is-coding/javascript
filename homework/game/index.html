@@ -92,7 +92,11 @@
     const points1 = document.querySelector(".points1");
     const points2 = document.querySelector(".points2");
     let time = 30;
+    let myPoints = 0;
+    let computerPoints = 0;
     function start() {
+      myPoints = 0;
+      points1.textContent = "My points: 0";
       const interval = setInterval(() => {
         square.style.left = rand(0, 350) + "px";
         square.style.top = rand(0, 350) + "px";
@@ -111,14 +115,11 @@
       }, 1000);
       time = 30;
     }
-    let myPoints = 0;
-    let computerPoints = 0;
     function pick(e) {
       if (buttonStop.disabled) {
         myPoints++;
         points1.textContent = "My points: " + myPoints;
       }
-      console.log(e);
     }
   </script>
 </html>
