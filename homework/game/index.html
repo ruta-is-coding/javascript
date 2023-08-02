@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Square game</title>
+  </head>
+  <style>
+    h1 {
+      text-align: center;
+    }
+    .description {
+      text-align: center;
+    }
+    .description p:first-child {
+      font-size: 25px;
+      font-weight: bold;
+    }
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 5px 15px;
+      font-weight: bold;
+      border-radius: 5px;
+      border: none;
+      background-color: lawngreen;
+      font-size: 18px;
+    }
+    .bigSquare {
+      background-color: lawngreen;
+      width: 400px;
+      height: 400px;
+      position: relative;
+      margin: 0 auto;
+    }
+    .square {
+      width: 50px;
+      height: 50px;
+      background-color: yellowgreen;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+  <body>
+    <h1>Square game</h1>
+    <div class="description">
+      <p>Rezultatas:</p>
+      <p class="result"></p>
+    </div>
+    <button onclick="start(event)">Start</button>
+    <div class="bigSquare">
+      <div class="square"></div>
+    </div>
+  </body>
+  <script>
+    function rand(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    const square = document.querySelector(".square");
+    const buttonStop = document.querySelector("button");
+    let gameOn = false;
+    let time = 30;
+    function start() {
+      if (gameOn) {
+        return;
+      }
+      gameOn = true;
+      const interval = setInterval(() => {
+        square.style.left = rand(0, 350) + "px";
+        square.style.top = rand(0, 350) + "px";
+        square.style.backgroundColor = `rgb(${rand(0, 255)}, ${rand(
+          0,
+          255
+        )},${rand(0, 255)})`;
+        time--;
+        if (time <= 0) {
+          clearInterval(interval);
+          time = 0;
+        }
+        console.log(time);
+      }, 1000);
+      gameOn = false;
+      time = 30;
+    }
+  </script>
+</html>
