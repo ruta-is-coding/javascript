@@ -62,11 +62,9 @@
     const square = document.querySelector(".square");
     const buttonStop = document.querySelector("button");
     let gameOn = false;
-    let time = 30;
+    let time = 10;
     function start() {
-      if (gameOn) {
-        return;
-      }
+      if (gameOn) return;
       gameOn = true;
       const interval = setInterval(() => {
         square.style.left = rand(0, 350) + "px";
@@ -75,15 +73,17 @@
           0,
           255
         )},${rand(0, 255)})`;
+        buttonStop.disabled = true;
+        console.log(time);
         time--;
-        if (time <= 0) {
+        if (time < 0) {
           clearInterval(interval);
           time = 0;
+          buttonStop.disabled = false;
         }
-        console.log(time);
       }, 1000);
       gameOn = false;
-      time = 30;
+      time = 10;
     }
   </script>
 </html>
