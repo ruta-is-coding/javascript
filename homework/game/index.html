@@ -94,10 +94,13 @@
     let time = 30;
     let myPoints = 0;
     let computerPoints = 0;
+    let clicked = false;
     function start() {
       myPoints = 0;
       points1.textContent = "My points: 0";
       const interval = setInterval(() => {
+        if (!clicked && time != 30) computerPoints++;
+        clicked = false;
         square.style.left = rand(0, 350) + "px";
         square.style.top = rand(0, 350) + "px";
         square.style.backgroundColor = `rgb(${rand(0, 255)}, ${rand(
@@ -105,6 +108,7 @@
           255
         )},${rand(0, 255)})`;
         buttonStop.disabled = true;
+        points2.textContent = "Computer points: " + computerPoints;
         timer.textContent = "Laikas: " + time + " s";
         time--;
         if (time < 0) {
@@ -117,6 +121,8 @@
     }
     function pick(e) {
       if (buttonStop.disabled) {
+        if (clicked) return;
+        clicked = true;
         myPoints++;
         points1.textContent = "My points: " + myPoints;
       }
