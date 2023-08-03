@@ -58,9 +58,16 @@
       margin: 0 auto;
     }
     .points1,
-    .points2 {
+    .points2,
+    .rounds {
       font-size: 30px;
-      text-align: left;
+      text-align: center;
+    }
+
+    .winner {
+      font-size: 30px;
+      text-align: center;
+      font-weight: bold;
     }
   </style>
   <body>
@@ -72,8 +79,10 @@
     <button onclick="start()">Start</button>
     <div class="row">
       <div class="col-6">
-        <p class="points1">My points: 0</p>
-        <p class="points2">Computer points: 0</p>
+        <p class="rounds"></p>
+        <p class="points1"></p>
+        <p class="points2"></p>
+        <p class="winner"></p>
       </div>
       <div class="bigSquare">
         <div class="square" onclick="pick(event)"></div>
@@ -87,17 +96,27 @@
       return Math.floor(Math.random() * (max - min + 1) + min);
     }
     const square = document.querySelector(".square");
-    const buttonStop = document.querySelector("button");
+    const buttonStart = document.querySelector("button");
     const timer = document.querySelector(".timer");
     const points1 = document.querySelector(".points1");
     const points2 = document.querySelector(".points2");
+    const winner = document.querySelector(".winner");
+    const rounds = document.querySelector(".rounds");
     let time = 30;
     let myPoints = 0;
+    let myTotalPoints = 0;
+    let computerTotalPoints = 0;
     let computerPoints = 0;
     let clicked = false;
+    let roundsCounter = 0;
     function start() {
+      winner.textContent = "";
+      points1.textContent = "";
+      points2.textContent = "";
+      roundsCounter++;
+      rounds.textContent = `Round: ${roundsCounter}`;
+      buttonStart.disabled = true;
       myPoints = 0;
-      points1.textContent = "My points: 0";
       const interval = setInterval(() => {
         if (!clicked && time != 30) computerPoints++;
         clicked = false;
@@ -107,24 +126,43 @@
           0,
           255
         )},${rand(0, 255)})`;
-        buttonStop.disabled = true;
-        points2.textContent = "Computer points: " + computerPoints;
+
         timer.textContent = "Laikas: " + time + " s";
         time--;
         if (time < 0) {
           clearInterval(interval);
           time = 0;
-          buttonStop.disabled = false;
+          buttonStart.disabled = false;
+          points1.textContent = "My points: " + myPoints;
+          points2.textContent = "Computer points: " + computerPoints;
+          myTotalPoints += myPoints;
+          computerTotalPoints += computerPoints;
+          if (myPoints > computerPoints)
+            winner.textContent = "You won this round :)";
+          else if (myPoints === computerPoints) winner.textContent = "Draw";
+          else winner.textContent = "You lost this round :(";
+          if (roundsCounter === 10) {
+            rounds.textContent = `Final round`;
+            points1.textContent = "My total points: " + myTotalPoints;
+            points2.textContent =
+              "Computer total points: " + computerTotalPoints;
+            if (myTotalPoints > computerTotalPoints)
+              winner.textContent = "You won this game :)";
+            else if (myTotalPoints === computerTotalPoints)
+              winner.textContent = "Draw";
+            else winner.textContent = "You lost this game :(";
+          }
+          if (roundsCounter >= 10) buttonStart.disabled = true;
         }
       }, 1000);
       time = 30;
     }
-    function pick(e) {
-      if (buttonStop.disabled) {
+
+    function pick() {
+      if (buttonStart.disabled) {
         if (clicked) return;
         clicked = true;
         myPoints++;
-        points1.textContent = "My points: " + myPoints;
       }
     }
   </script>
