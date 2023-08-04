@@ -79,6 +79,8 @@
           if (time <= 0) {
             clearInterval(interval);
             time = 0;
+            document.querySelector(".timer").innerHTML = `Time is over`;
+            document.querySelector(".timer").style.color = "red";
           }
           time--;
         }, 1000);
