@@ -50,6 +50,8 @@
       placeholder="Enter the time in minutes"
       name="time"
       id="time"
+      pattern="[0-9]+"
+      required
     />
     <div class="buttons">
       <button onclick="run()">Start</button>
@@ -58,12 +60,15 @@
     </div>
     <div class="timer"></div>
     <script>
-      //   let time = document.querySelector('[name="time"]').innerText;
       let interval;
       let ran = false;
       let time = 0;
+      const input = document.getElementById("time");
       function run() {
-        if (!ran) time = document.getElementById("time").value * 60;
+        if (!input.checkValidity()) {
+          alert("This is not a number");
+        }
+        if (!ran) time = input.value * 60;
         ran = true;
         interval = setInterval(() => {
           let minutes = Math.floor(time / 60); //minutes suapvalinamos iki mazesnio sveikojo skaiciaus ir jos yra intervalo viduje
@@ -71,7 +76,6 @@
           document.querySelector(
             ".timer"
           ).innerHTML = `${minutes} min ${seconds} s`;
-          console.log(time);
           if (time <= 0) {
             clearInterval(interval);
             time = 0;
@@ -85,7 +89,7 @@
       function reset() {
         interval = clearInterval(interval);
         document.querySelector(".timer").innerHTML = `0 min 0 s`;
-        document.getElementById("time").value = "";
+        input.value = "";
         time = 0;
       }
     </script>
