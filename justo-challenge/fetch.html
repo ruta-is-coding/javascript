@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="data"></div>
+    <script>
+      function setData(data) {
+        document.getElementById("data").textContent = JSON.stringify(data);
+      }
+      fetch("https://jsonplaceholder.typicode.com/todos/201")
+        .then((response) => response.json())
+        .then((json) => setData(json));
+      //   fetch("https://jsonplaceholder.typicode.com/todos/")
+      //     .then((response) => response.json())
+      //     .then((json) => setData(json));
+      fetch("https://jsonplaceholder.typicode.com/todos/", {
+        method: "POST",
+        body: JSON.stringify({
+          userId: 24,
+          title: "zinute",
+          completed: true,
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+    </script>
+  </body>
+</html>
