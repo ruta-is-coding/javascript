@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Timer</title>
     <style>
+      body {
+        display: flex;
+        justify-content: center;
+      }
       .timer {
         font-size: 50px;
         font-weight: bold;
@@ -42,23 +46,34 @@
         );
         color: white;
       }
+      .container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      img {
+        width: 50%;
+      }
     </style>
   </head>
   <body>
-    <input
-      type="text"
-      placeholder="Enter the time in minutes"
-      name="time"
-      id="time"
-      pattern="[0-9]+"
-      required
-    />
-    <div class="buttons">
-      <button onclick="run()">Start</button>
-      <button onclick="pause()">Pause</button>
-      <button onclick="reset()">Reset</button>
+    <audio id="mySound" src="alarm.mp3"></audio>
+    <div class="container">
+      <input
+        type="text"
+        placeholder="Enter the time in minutes"
+        name="time"
+        id="time"
+        pattern="[0-9]+"
+        required
+      />
+      <div class="buttons">
+        <button onclick="run()">Start</button>
+        <button onclick="pause()">Pause</button>
+        <button onclick="reset()">Reset</button>
+      </div>
+      <div class="timer"></div>
     </div>
-    <div class="timer"></div>
     <script>
       let interval;
       let ran = false;
@@ -80,7 +95,10 @@
             clearInterval(interval);
             time = 0;
             document.querySelector(".timer").innerHTML = `Time is over`;
-            document.querySelector(".timer").style.color = "red";
+            document.getElementById("mySound").play();
+            document.querySelector(
+              ".container"
+            ).innerHTML += `<img src="rooster.png" alt="rooster">`;
           }
           time--;
         }, 1000);
