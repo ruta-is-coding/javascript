@@ -24,6 +24,7 @@
         border: 1px solid rgb(255, 0, 202);
         border-radius: 5px;
         color: rgb(255, 0, 202);
+        outline: none;
       }
       input::placeholder {
         color: rgb(255, 0, 202);
@@ -53,6 +54,7 @@
       }
       img {
         width: 50%;
+        display: none;
       }
     </style>
   </head>
@@ -73,6 +75,7 @@
         <button onclick="reset()">Reset</button>
       </div>
       <div class="timer"></div>
+      <img src="rooster.png" alt="rooster" />
     </div>
     <script>
       let interval;
@@ -80,6 +83,7 @@
       let time = 0;
       const input = document.getElementById("time");
       function run() {
+        document.querySelector("img").style.display = "none";
         if (!input.checkValidity()) {
           alert("This is not a number");
         }
@@ -96,10 +100,7 @@
             time = 0;
             document.querySelector(".timer").innerHTML = `Time is over`;
             document.getElementById("mySound").play();
-            document.querySelector(
-              ".container"
-            ).innerHTML += `<img src="rooster.png" alt="rooster">`;
-            input.value = "";
+            document.querySelector("img").style.display = "block";
             ran = false;
           }
           time--;
