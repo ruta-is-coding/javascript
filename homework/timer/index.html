@@ -87,26 +87,27 @@
         document.getElementById("runButton").disabled = true;
         document.querySelector("img").style.display = "none";
         if (!input.checkValidity()) {
-          alert("This is not a number");
+          document.querySelector(".timer").innerHTML = `Enter a number`;
+        } else {
+          if (!ran) time = input.value * 60;
+          ran = true;
+          interval = setInterval(() => {
+            let minutes = Math.floor(time / 60); //minutes suapvalinamos iki mazesnio sveikojo skaiciaus ir jos yra intervalo viduje
+            let seconds = time - minutes * 60;
+            document.querySelector(
+              ".timer"
+            ).innerHTML = `${minutes} min ${seconds} s`;
+            if (time <= 0) {
+              clearInterval(interval);
+              document.querySelector(".timer").innerHTML = `Time is over`;
+              document.getElementById("mySound").play();
+              document.querySelector("img").style.display = "block";
+              ran = false;
+              document.getElementById("runButton").disabled = false;
+            }
+            time--;
+          }, 1000);
         }
-        if (!ran) time = input.value * 60;
-        ran = true;
-        interval = setInterval(() => {
-          let minutes = Math.floor(time / 60); //minutes suapvalinamos iki mazesnio sveikojo skaiciaus ir jos yra intervalo viduje
-          let seconds = time - minutes * 60;
-          document.querySelector(
-            ".timer"
-          ).innerHTML = `${minutes} min ${seconds} s`;
-          if (time <= 0) {
-            clearInterval(interval);
-            document.querySelector(".timer").innerHTML = `Time is over`;
-            document.getElementById("mySound").play();
-            document.querySelector("img").style.display = "block";
-            ran = false;
-            document.getElementById("runButton").disabled = false;
-          }
-          time--;
-        }, 1000);
       }
       function pause() {
         document.getElementById("runButton").disabled = false;
