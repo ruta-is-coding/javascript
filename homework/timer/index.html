@@ -99,6 +99,8 @@
             document.querySelector(
               ".container"
             ).innerHTML += `<img src="rooster.png" alt="rooster">`;
+            input.value = "";
+            ran = false;
           }
           time--;
         }, 1000);
@@ -107,10 +109,11 @@
         clearInterval(interval);
       }
       function reset() {
-        interval = clearInterval(interval);
-        document.querySelector(".timer").innerHTML = `0 min 0 s`;
+        clearInterval(interval);
+        document.querySelector(".timer").innerHTML = "";
         input.value = "";
-        time = 0;
+        ran = false;
+        document.querySelector("img").style.display = "none";
       }
     </script>
   </body>
