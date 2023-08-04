@@ -21,16 +21,18 @@
     </div>
     <script>
       let select = document.querySelector("select");
-      //   let objectEntries;
-      //   fetch("https://dog.ceo/api/breeds/list/all")
-      //     .then((resp) => resp.json())
-      //     .then((resp) => {
-      //       if (resp.status != "success") return;
-      //       objectEntries = Object.entries(resp.message);
-      //       select.innerHTML = `<option>${resp.message}</option>`;
-      //     });
-
-      //   console.log(objectEntries);
+      fetch("https://dog.ceo/api/breeds/list/all")
+        .then((resp) => resp.json())
+        .then((resp) => {
+          if (resp.status != "success") return;
+          for (const key in resp.message) {
+            select.innerHTML += `<option>${key}</option>`;
+            for (const value of resp.message[key]) {
+              console.log(value);
+            }
+          }
+        });
+      console.log(document.querySelectorAll("option"));
 
       function getPhoto(e) {
         e.preventDefault();
