@@ -22,7 +22,7 @@
     <script>
       let select = document.querySelector("select");
       fetch("https://dog.ceo/api/breeds/list/all")
-        .then((resp) => resp.json())
+        .then((resp) => resp.json()) //parsina jsona i js objekta
         .then((resp) => {
           if (resp.status != "success") return;
           for (const key in resp.message) {
