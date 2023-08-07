@@ -26,12 +26,18 @@
         .then((resp) => {
           if (resp.status != "success") return;
           for (const key in resp.message) {
-            select.innerHTML += `<option>${key}</option>`;
-            for (const value of resp.message[key]) {
-              console.log(value);
+            //select.innerHTML += `<option>${key}</option>`;
+            if (resp.message[key].length > 0) {
+              for (const value of resp.message[key]) {
+                //console.log(value);
+                select.innerHTML += `<option value="${key}/${value}">${value} ${key}</option>`;
+              }
+            } else {
+              select.innerHTML += `<option value="${key}">${key}</option>`;
             }
           }
         });
+
       console.log(document.querySelectorAll("option"));
 
       function getPhoto(e) {
