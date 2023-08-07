@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cocktails</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      img {
+        max-width: 100%;
+        cursor: pointer;
+      }
+      .popUpWindow {
+        position: absolute;
+        width: 60%;
+        height: 80%;
+        left: 20%; /*(100%-width)/2*/
+        top: 10%;
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      //HTTP Query
+      //https://www.google.com/?parametras=reiksme&sekantisparametras=1&darvienas=2...
+      //1. Protokolas (https://)
+      //2. subdomenas (www)
+      //3. domenas (google.com)
+      //4. uzklausos informacija, query (?parametras=reiksme&sekantisparametras=1&darvienas=2...)
+
+      fetch(
+        "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
+      )
+        .then((resp) => resp.json())
+        .then((resp) => {
+          //   console.log(resp);
+          let html = `<div class="container">
+                            <div class="row">`;
+
+          resp.drinks.map((data) => {
+            html += `<div class="col-4">
+                                <img src="${data.strDrinkThumb}" alt="${data.strDrink}" onclick="run(event)"/>
+                                <h3>${data.strDrink}</h3>
+                            </div>
+                            `;
+          });
+
+          html += `</div></div>`;
+
+          document.getElementById("app").innerHTML += html;
+        });
+      function run(e) {
+        // console.log(e);
+        document.getElementById(
+          "app"
+        ).innerHTML += `<div class="popUpWindow"></div>`;
+      }
+      fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007")
+        .then((resp) => resp.json())
+        .then((resp) => console.log(resp.drinks[0]));
+    </script>
+  </body>
+</html>
