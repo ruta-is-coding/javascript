@@ -15,98 +15,128 @@
       .popUpWindow {
         position: absolute;
         width: 60%;
-        height: 80%;
         left: 20%; /*(100%-width)/2*/
-        top: 10%;
+        top: 15%;
         background: white;
         visibility: hidden;
-      }
-      button {
-        position: absolute;
-        top: 1%;
-        right: 1%;
-        cursor: pointer;
-        border: none;
-        background-color: white;
-        z-index: 10;
+        border: 1px solid black;
       }
       svg {
+        position: absolute;
+        cursor: pointer;
+        top: 2%;
+        right: 1%;
         width: 20px;
         height: 20px;
       }
       path {
-        fill: rgb(73, 122, 0);
+        fill: rgb(122, 0, 91);
+      }
+      h3 {
+        text-align: center;
+        color: rgb(243, 0, 122);
       }
     </style>
   </head>
   <body>
     <div id="app" class="container mt-5">
-      <form onsubmit="getData(event)" class="input-group">
+      <!--mt - margin-top-->
+      <form onsubmit="getPhotos(event)" class="input-group" id="form">
+        <!--getData funkcija iššaukiama submit'inus formą-->
+        <!--input-group klasė sugrupuoja kartu formos elementus-->
         <input
           type="text"
+          id="search"
           class="form-control"
-          placeholder="Įveskite ieškomo gėrimo pavadinimą"
+          placeholder="Enter the name of a drink"
         />
-        <button class="btn btn-primary">Ieškoti</button>
+        <!--paieškos laukelis-->
+        <button class="btn btn-primary">Search</button>
       </form>
+      <div id="result" class="mt-5"></div>
+      <!--kur bus atvaizduojamas rezultatas-->
     </div>
-    <div id="result"></div>
-    <script>
-      function getData(e) {
-        e.preventDefault();
-        const value = e.target.querySelector("input").value;
+    <div class="popUpWindow d-flex justify-content-around"></div>
 
+    <script>
+      const popUp = document.querySelector(".popUpWindow");
+      const form = document.querySelector("form");
+      function getPhotos(e) {
+        console.log(e);
+        e.preventDefault();
+        popUp.style.visibility = "hidden";
+
+        const value = document.getElementById("search").value;
         fetch(
           "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + value
         )
           .then((resp) => resp.json())
           .then((resp) => {
-            console.log(resp);
             const result = document.getElementById("result");
             if (!resp.drinks)
-              return (result.innerHTML = `<div class="alert alert-warning">Nepavyko rasti rezultato</div>`);
+              return (result.innerHTML = `<div class="alert alert-warning">Result not found</div>`);
 
-            //   console.log(resp);
-            let html = `<div class="container">
-                                  <div class="row">`;
+            let html = `<div class="row">`;
 
             resp.drinks.map((data) => {
               html += `<div class="col-4">
-                <a href="#" onclick="run(event)">
+                                      <a href="#" onclick="getDrink(event, ${data.idDrink})">
                                       <img src="${data.strDrinkThumb}" alt="${data.strDrink}"/>
+                                    </a>
                                       <h3>${data.strDrink}</h3>
-                                      </a>
-                                  </div>
-                                  `;
+                                      </div>`;
             });
-
-            html = `</div></div>`;
-
-            document.getElementById("result").innerHTML += html;
+            html += `</div>`;
+            result.innerHTML = html;
+            form.style.visibility = "visible";
           });
       }
-      document.getElementById("result").innerHTML += `<div class="popUpWindow">
-              <button onclick="close(event)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16">
-        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
-      </svg></button>
-                </div>`;
-      function run(e) {
-        // console.log(e);
-        document.querySelector(".popUpWindow").style.visibility = "visible";
-        // document.querySelector(".popUpWindow").textContent+=
+
+      function getDrink(e, id) {
+        e.preventDefault();
+        fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id)
+          .then((resp) => resp.json())
+          .then((resp) => {
+            const data = resp.drinks[0];
+
+            let ingredients = "";
+
+            for (let i = 1; i <= 15; i++) {
+              if (data["strIngredient" + i])
+                ingredients += `<li>${data["strIngredient" + i]} ${
+                  data["strMeasure" + i] ? data["strMeasure" + i] : ""
+                }</li>`;
+            }
+
+            popUp.style.visibility = "visible";
+            popUp.innerHTML = `<div class="row m-2">
+              <h3>${data.strDrink}</h3>
+              <div class="col-4">
+                <h4>Details:</h4>
+              <ul>
+              <li>${data.strAlcoholic}</li>
+              <li>${data.strCategory}</li>
+              <li>${data.strGlass}</li>
+              </ul>
+              </div>
+              <div class="col-4">
+                <h4>Ingredients:</h4>
+                  <ul>
+                    ${ingredients}
+                    </ul>
+                </div>
+                <div class="col-4">
+                  <h4>Preparation:</h4>
+              <p>${data.strInstructions}</p>
+                </div>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" onclick="getPhotos(event)">
+      //   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+      // </svg>`;
+
+            form.style.visibility = "hidden";
+          });
       }
-
-      // fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007")
-      //   .then((resp) => resp.json())
-      //   .then((resp) => {
-
-      //     });
-
-      // function close(e) {
-      //   console.log(e);
-      //   document.querySelector(".popUpWindow").style.visibility = "hidden";
-      // }
     </script>
   </body>
 </html>
