@@ -11,7 +11,6 @@
     <style>
       img {
         max-width: 100%;
-        cursor: pointer;
       }
       .popUpWindow {
         position: absolute;
@@ -41,37 +40,52 @@
     </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" class="container mt-5">
+      <form onsubmit="getData(event)" class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Įveskite ieškomo gėrimo pavadinimą"
+        />
+        <button class="btn btn-primary">Ieškoti</button>
+      </form>
+    </div>
+    <div id="result"></div>
     <script>
-      //HTTP Query
-      //https://www.google.com/?parametras=reiksme&sekantisparametras=1&darvienas=2...
-      //1. Protokolas (https://)
-      //2. subdomenas (www)
-      //3. domenas (google.com)
-      //4. uzklausos informacija, query (?parametras=reiksme&sekantisparametras=1&darvienas=2...)
+      function getData(e) {
+        e.preventDefault();
+        const value = e.target.querySelector("input").value;
 
-      fetch(
-        "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
-      )
-        .then((resp) => resp.json())
-        .then((resp) => {
-          //   console.log(resp);
-          let html = `<div class="container">
+        fetch(
+          "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + value
+        )
+          .then((resp) => resp.json())
+          .then((resp) => {
+            console.log(resp);
+            const result = document.getElementById("result");
+            if (!resp.drinks)
+              return (result.innerHTML = `<div class="alert alert-warning">Nepavyko rasti rezultato</div>`);
+
+            //   console.log(resp);
+            let html = `<div class="container">
                                   <div class="row">`;
 
-          resp.drinks.map((data) => {
-            html += `<div class="col-4">
-                                      <img src="${data.strDrinkThumb}" alt="${data.strDrink}" onclick="run(event)"/>
+            resp.drinks.map((data) => {
+              html += `<div class="col-4">
+                <a href="#" onclick="run(event)">
+                                      <img src="${data.strDrinkThumb}" alt="${data.strDrink}"/>
                                       <h3>${data.strDrink}</h3>
+                                      </a>
                                   </div>
                                   `;
+            });
+
+            html = `</div></div>`;
+
+            document.getElementById("result").innerHTML += html;
           });
-
-          html += `</div></div>`;
-
-          document.getElementById("app").innerHTML += html;
-        });
-      document.getElementById("app").innerHTML += `<div class="popUpWindow">
+      }
+      document.getElementById("result").innerHTML += `<div class="popUpWindow">
               <button onclick="close(event)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16">
         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
