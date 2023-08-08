@@ -9,14 +9,17 @@
       rel="stylesheet"
     />
     <style>
+      .container {
+        max-width: 1000px;
+      }
       img {
         max-width: 100%;
       }
-      .popUpWindow {
+      #modalWindow {
         position: absolute;
         width: 60%;
         left: 20%; /*(100%-width)/2*/
-        top: 15%;
+        top: 20%;
         background: white;
         visibility: hidden;
         border: 1px solid black;
@@ -24,10 +27,11 @@
       svg {
         position: absolute;
         cursor: pointer;
-        top: 2%;
+        top: 5px;
         right: 1%;
         width: 20px;
         height: 20px;
+        visibility: none;
       }
       path {
         fill: rgb(122, 0, 91);
@@ -51,22 +55,45 @@
           placeholder="Enter the name of a drink"
         />
         <!--paieškos laukelis-->
-        <button class="btn btn-primary">Search</button>
+        <button class="btn btn-warning">Search</button>
       </form>
+      <div class="text-center row">
+        <button id="lucky" class="btn btn-success mt-2" onclick="random(event)">
+          I'm lucky
+        </button>
+      </div>
+
       <div id="result" class="mt-5"></div>
       <!--kur bus atvaizduojamas rezultatas-->
     </div>
-    <div class="popUpWindow d-flex justify-content-around"></div>
+    <div id="modalWindow" class="d-flex justify-content-around">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-x-square-fill"
+        viewBox="0 0 16 16"
+        onclick="getPhotos(event)"
+      >
+        <path
+          d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"
+        />
+      </svg>
+      <div class="popUpWindow"></div>
+    </div>
 
     <script>
       const popUp = document.querySelector(".popUpWindow");
       const form = document.querySelector("form");
+      const lucky = document.getElementById("lucky");
+      const modal = document.getElementById("modalWindow");
       function getPhotos(e) {
-        console.log(e);
         e.preventDefault();
-        popUp.style.visibility = "hidden";
+        modal.style.visibility = "hidden";
 
         const value = document.getElementById("search").value;
+
         fetch(
           "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + value
         )
@@ -89,6 +116,7 @@
             html += `</div>`;
             result.innerHTML = html;
             form.style.visibility = "visible";
+            lucky.style.visibility = "visible";
           });
       }
 
@@ -108,7 +136,7 @@
                 }</li>`;
             }
 
-            popUp.style.visibility = "visible";
+            modal.style.visibility = "visible";
             popUp.innerHTML = `<div class="row m-2">
               <h3>${data.strDrink}</h3>
               <div class="col-4">
@@ -130,12 +158,52 @@
               <p>${data.strInstructions}</p>
                 </div>
               </div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" onclick="getPhotos(event)">
-      //   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
-      // </svg>`;
+              `;
 
             form.style.visibility = "hidden";
           });
+      }
+
+      let alcoData;
+
+      async function random(e) {
+        lucky.style.visibility = "hidden";
+        form.style.visibility = "hidden";
+        modal.style.visibility = "visible";
+        let data = await fetch(
+          "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+        );
+        data = await data.json();
+        console.log(data);
+        const data2 = data.drinks[0];
+        modal.classList.remove("d-flex");
+        popUp.innerHTML = `
+        <h3>${data2.strDrink}</h3>
+            <a href="#" onclick="alcoType(event)" style="text-align:center;font-size:20px;display:block;color: rgb(243, 0, 122)">${data2.strAlcoholic}</a>
+            `;
+        alcoData = data2.strAlcoholic;
+      }
+
+      async function alcoType(e) {
+        let data = await fetch(
+          "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + alcoData
+        );
+        data = await data.json();
+        data = data.drinks;
+        popUp.innerHTML += `
+        <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
+        
+        `;
+        for (const value of data) {
+          document.getElementById(
+            "row"
+          ).innerHTML += `<div class="col-3 m-2 d-flex justify-content-between flex-column">
+              
+                <h3 style="font-size:20px">${value.strDrink}</h3>
+                <img src="${value.strDrinkThumb}">
+              
+              </div>`;
+        }
       }
     </script>
   </body>
