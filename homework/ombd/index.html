@@ -75,14 +75,14 @@
       // next mygtukas
       function next(e) {
         e.preventDefault();
-        previousButton.classList.remove("disabled");
+        previousButton.classList.remove("disabled"); //kai paspaudžiame next mygtuką, previous tampa enabled
         page++;
         let calculated = Math.ceil(results / 10);
         console.log(results);
         console.log(calculated);
         if (page >= calculated) {
           page = calculated;
-          e.target.classList.add("disabled");
+          e.target.classList.add("disabled"); // kai pasiekiame puslapio pabaigą, next tampa disabled
         }
         console.log(e);
         getData(e);
@@ -90,10 +90,10 @@
       // previous mygtukas
       function previous(e) {
         e.preventDefault();
-        nextButton.classList.remove("disabled");
+        nextButton.classList.remove("disabled"); // kai paspaudžiame previous mygtuką, next tampa enabled
         page--;
         if (page <= 1) {
-          e.target.classList.add("disabled");
+          e.target.classList.add("disabled"); // kai pasiekiame pirmą puslapį, previous tampa disabled
           page = 1;
         }
         getData(e);
