@@ -9,11 +9,18 @@
       rel="stylesheet"
     />
     <style>
+      a {
+        text-align: center;
+        font-size: 20px;
+        color: rgb(243, 0, 122);
+      }
       .container {
         max-width: 1000px;
       }
       img {
         max-width: 100%;
+        display: block;
+        width: 300px;
       }
       #modalWindow {
         position: absolute;
@@ -84,18 +91,18 @@
     </div>
 
     <script>
+      // --------------------------------------------------------------------Kintamieji---------------------------------------------------------------------
       const popUp = document.querySelector(".popUpWindow");
       const form = document.querySelector("form");
       const lucky = document.getElementById("lucky");
       const modal = document.getElementById("modalWindow");
+      // --------------------------------------------------------------------Gaunamos foto---------------------------------------------------------------------
       function getPhotos(e) {
         e.preventDefault();
         modal.style.visibility = "hidden";
-
         const value = document.getElementById("search").value;
-
         fetch(
-          "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + value
+          `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`
         )
           .then((resp) => resp.json())
           .then((resp) => {
@@ -107,7 +114,7 @@
 
             resp.drinks.map((data) => {
               html += `<div class="col-4">
-                                      <a href="#" onclick="getDrink(event, ${data.idDrink})">
+                                      <a href="#" onclick="getDetails(event, ${data.idDrink})">
                                       <img src="${data.strDrinkThumb}" alt="${data.strDrink}"/>
                                     </a>
                                       <h3>${data.strDrink}</h3>
@@ -120,46 +127,22 @@
           });
       }
 
-      function getDrink(e, id) {
+      // --------------------------------------------------------------------Gaunamos kokteilio detalės---------------------------------------------------------------------
+      function getDetails(e, id) {
         e.preventDefault();
-        fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id)
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
           .then((resp) => resp.json())
           .then((resp) => {
             const data = resp.drinks[0];
-
             let ingredients = "";
-
             for (let i = 1; i <= 15; i++) {
               if (data["strIngredient" + i])
                 ingredients += `<li>${data["strIngredient" + i]} ${
                   data["strMeasure" + i] ? data["strMeasure" + i] : ""
                 }</li>`;
             }
-
             modal.style.visibility = "visible";
-            popUp.innerHTML = `<div class="row m-2">
-              <h3>${data.strDrink}</h3>
-              <div class="col-4">
-                <h4>Details:</h4>
-              <ul>
-              <li>${data.strAlcoholic}</li>
-              <li>${data.strCategory}</li>
-              <li>${data.strGlass}</li>
-              </ul>
-              </div>
-              <div class="col-4">
-                <h4>Ingredients:</h4>
-                  <ul>
-                    ${ingredients}
-                    </ul>
-                </div>
-                <div class="col-4">
-                  <h4>Preparation:</h4>
-              <p>${data.strInstructions}</p>
-                </div>
-              </div>
-              `;
-
+            addHTML(data, ingredients);
             form.style.visibility = "hidden";
           });
       }
@@ -174,14 +157,43 @@
           "https://www.thecocktaildb.com/api/json/v1/1/random.php"
         );
         data = await data.json();
-        console.log(data);
-        const data2 = data.drinks[0];
+        data = data.drinks[0];
         modal.classList.remove("d-flex");
+        let ingredients = "";
+        for (let i = 1; i <= 15; i++) {
+          if (data["strIngredient" + i])
+            ingredients += `<li>${data["strIngredient" + i]} ${
+              data["strMeasure" + i] ? data["strMeasure" + i] : ""
+            }</li>`;
+        }
+        addHTML(data, ingredients);
+        alcoData = data.strAlcoholic;
+      }
+
+      function addHTML(data, ingredients) {
         popUp.innerHTML = `
-        <h3>${data2.strDrink}</h3>
-            <a href="#" onclick="alcoType(event)" style="text-align:center;font-size:20px;display:block;color: rgb(243, 0, 122)">${data2.strAlcoholic}</a>
+        <div class="container m-3">
+        <h3>${data.strDrink}</h3>
+        <div class="container d-flex justify-content-center gap-3 mb-3">
+        <a href="#" onclick="alcoType(event)">${data.strAlcoholic}</a>
+            <a href="#">${data.strCategory}</a>
+            <a href="#">${data.strGlass}</a>
+          </div>
+          <div class="container d-flex justify-content-center mb-3 mt-3">
+            <div class="col-6 d-flex justify-content-center">
+        <img src="${data.strDrinkThumb}" alt="${data.strDrink}"/>
+      </div>
+        <div class="col-6 d-flex flex-column align-items-start">
+                <h4>Ingredients:</h4>
+                  <ul>
+                    ${ingredients}
+                    </ul>
+                    <h4">Preparation:</h4>
+              <p>${data.strInstructions}</p>
+                </div>
+            </div>
+      </div>
             `;
-        alcoData = data2.strAlcoholic;
       }
 
       async function alcoType(e) {
@@ -190,7 +202,7 @@
         );
         data = await data.json();
         data = data.drinks;
-        popUp.innerHTML += `
+        popUp.innerHTML = `
         <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
         
         `;
