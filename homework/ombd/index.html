@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="container mb-5 mt-5">
-      <form onsubmit="getData(event)" class="input-group" id="form">
+      <form onsubmit="page=1; getData(event, 1)" class="input-group" id="form">
         <!--getData funkcija iššaukiama submit'inus formą-->
         <!--input-group klasė sugrupuoja kartu formos elementus-->
         <input type="text" id="search" class="form-control" />
@@ -42,7 +42,7 @@
       let page = 1;
       let results;
 
-      function getData(e) {
+      function getData(e, page) {
         e.preventDefault();
 
         let value = document.getElementById("search").value;
@@ -85,7 +85,7 @@
           e.target.classList.add("disabled"); // kai pasiekiame puslapio pabaigą, next tampa disabled
         }
         console.log(e);
-        getData(e);
+        getData(e, page);
       }
       // previous mygtukas
       function previous(e) {
@@ -96,7 +96,7 @@
           e.target.classList.add("disabled"); // kai pasiekiame pirmą puslapį, previous tampa disabled
           page = 1;
         }
-        getData(e);
+        getData(e, page);
       }
     </script>
   </body>
