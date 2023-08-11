@@ -40,18 +40,19 @@
 
     <script>
       let page = 1;
+      let nextButton = document.getElementById("next");
+      let previousButton = document.getElementById("previous");
       let results;
 
-      function getData(e, page) {
+      function getData(e, pageGetData) {
         e.preventDefault();
-
+        page = pageGetData;
         let value = document.getElementById("search").value;
         fetch(
-          `https://www.omdbapi.com/?apikey=4f0a9ce2&s=${value}&page=${page}`
+          `https://www.omdbapi.com/?apikey=4f0a9ce2&s=${value}&page=${pageGetData}`
         )
           .then((resp) => resp.json())
           .then((resp) => {
-            console.log(resp);
             const result = document.getElementById("result");
             results = resp.totalResults;
 
@@ -67,24 +68,23 @@
 
             html += `</div>`;
             result.innerHTML = html;
+            if (page <= 1) {
+              previousButton.classList.add("disabled");
+            }
           });
         console.log(page);
       }
-      let nextButton = document.getElementById("next");
-      let previousButton = document.getElementById("previous");
+
       // next mygtukas
       function next(e) {
         e.preventDefault();
         previousButton.classList.remove("disabled"); //kai paspaudžiame next mygtuką, previous tampa enabled
         page++;
         let calculated = Math.ceil(results / 10);
-        console.log(results);
-        console.log(calculated);
         if (page >= calculated) {
           page = calculated;
-          e.target.classList.add("disabled"); // kai pasiekiame puslapio pabaigą, next tampa disabled
+          nextButton.classList.add("disabled"); // kai pasiekiame puslapio pabaigą, next tampa disabled
         }
-        console.log(e);
         getData(e, page);
       }
       // previous mygtukas
@@ -93,7 +93,7 @@
         nextButton.classList.remove("disabled"); // kai paspaudžiame previous mygtuką, next tampa enabled
         page--;
         if (page <= 1) {
-          e.target.classList.add("disabled"); // kai pasiekiame pirmą puslapį, previous tampa disabled
+          previousButton.classList.add("disabled"); // kai pasiekiame pirmą puslapį, previous tampa disabled
           page = 1;
         }
         getData(e, page);
