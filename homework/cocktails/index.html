@@ -69,11 +69,11 @@
         <button class="btn btn-warning">Search</button>
       </form>
       <div class="text-center row">
-        <button id="lucky" class="btn btn-success mt-2" onclick="random(event)">
+        <button id="lucky" class="btn btn-success mt-2" onclick="random()">
           I'm lucky
         </button>
       </div>
-
+      <div id="alphabet" class="d-flex gap-3 mt-2 justify-content-center"></div>
       <div id="result" class="mt-5"></div>
       <!--kur bus atvaizduojamas rezultatas-->
     </div>
@@ -104,6 +104,34 @@
       let categoryData;
       let glassData;
       let ingredientData;
+      const alphabet = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+      ];
       // --------------------------------------------------------------------Gaunamos foto---------------------------------------------------------------------
       function getPhotos(e) {
         e.preventDefault();
@@ -146,9 +174,7 @@
             let ingredients = "";
             for (let i = 1; i <= 15; i++) {
               if (data["strIngredient" + i])
-                ingredients += `<li><a href="#" onclick="ingredientType(ingredientData)">${
-                  data["strIngredient" + i]
-                }</a> ${
+                ingredients += `<li>${data["strIngredient" + i]} ${
                   data["strMeasure" + i] ? data["strMeasure" + i] : ""
                 }</li>`;
             }
@@ -164,7 +190,7 @@
         lucky.style.visibility = "hidden";
       }
 
-      async function random(e) {
+      async function random() {
         let data = await fetch(
           "https://www.thecocktaildb.com/api/json/v1/1/random.php"
         );
@@ -197,14 +223,7 @@
         popUp.innerHTML = `
         <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
         `;
-        for (const value of data) {
-          document.getElementById(
-            "row"
-          ).innerHTML += `<div class="col-3 m-2 d-flex justify-content-between flex-column">
-                <h3 style="font-size:20px">${value.strDrink}</h3>
-                <img src="${value.strDrinkThumb}">
-              </div>`;
-        }
+        valueOfData(data);
       }
 
       async function categoryType() {
@@ -217,14 +236,7 @@
         popUp.innerHTML = `
         <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
         `;
-        for (const value of data) {
-          document.getElementById(
-            "row"
-          ).innerHTML += `<div class="col-3 m-2 d-flex justify-content-between flex-column">
-                <h3 style="font-size:20px">${value.strDrink}</h3>
-                <img src="${value.strDrinkThumb}">
-              </div>`;
-        }
+        valueOfData(data);
       }
 
       async function glassType() {
@@ -237,14 +249,7 @@
         popUp.innerHTML = `
         <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
         `;
-        for (const value of data) {
-          document.getElementById(
-            "row"
-          ).innerHTML += `<div class="col-3 m-2 d-flex justify-content-between flex-column">
-                <h3 style="font-size:20px">${value.strDrink}</h3>
-                <img src="${value.strDrinkThumb}">
-              </div>`;
-        }
+        valueOfData(data);
       }
 
       async function ingredientType(ingredientData) {
@@ -257,6 +262,10 @@
         popUp.innerHTML = `
         <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
         `;
+        valueOfData(data);
+      }
+
+      function valueOfData(data) {
         for (const value of data) {
           document.getElementById(
             "row"
@@ -270,27 +279,48 @@
       function addHTML(data, ingredients) {
         popUp.innerHTML = `
         <div class="container m-3">
-        <h3>${data.strDrink}</h3>
-        <div class="container d-flex justify-content-center gap-3 mb-3">
-        <a href="#" onclick="alcoType()">${data.strAlcoholic}</a>
-            <a href="#" onclick="categoryType()">${data.strCategory}</a>
-            <a href="#" onclick="glassType()">${data.strGlass}</a>
+          <h3>${data.strDrink}</h3>
+          <div class="container d-flex justify-content-center gap-3 mb-3">
+              <a href="#" onclick="alcoType()">${data.strAlcoholic}</a>
+              <a href="#" onclick="categoryType()">${data.strCategory}</a>
+              <a href="#" onclick="glassType()">${data.strGlass}</a>
           </div>
           <div class="container d-flex justify-content-center mb-3 mt-3">
             <div class="col-6 d-flex justify-content-center">
-        <img src="${data.strDrinkThumb}" alt="${data.strDrink}"/>
-      </div>
-        <div class="col-6 d-flex flex-column align-items-start">
-                <h4>Ingredients:</h4>
-                  <ul>
-                    ${ingredients}
-                    </ul>
-                    <h4>Preparation:</h4>
-              <p>${data.strInstructions}</p>
-                </div>
+              <img src="${data.strDrinkThumb}" alt="${data.strDrink}"/>
             </div>
-      </div>
+            <div class="col-6 d-flex flex-column align-items-start">
+                  <h4>Ingredients:</h4>
+                  <ul>
+                      ${ingredients}
+                  </ul>
+                  <h4>Preparation:</h4>
+                  <p>${data.strInstructions}</p>
+            </div>
+          </div>
+        </div>
             `;
+      }
+
+      for (const value of alphabet) {
+        document.getElementById(
+          "alphabet"
+        ).innerHTML += `<a href="#" class="text-success" onclick="byFirstLetter(event)">${value}</a>`;
+      }
+
+      async function byFirstLetter(e) {
+        let letter = e.target.textContent.toLowerCase(); //e.target-nuoroda
+        let data = await fetch(
+          `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`
+        );
+        data = await data.json();
+        data = data.drinks;
+        modal.style.position = "absolute";
+        modalVisible();
+        popUp.innerHTML = `
+        <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
+        `;
+        valueOfData(data);
       }
     </script>
   </body>
