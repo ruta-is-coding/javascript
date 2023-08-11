@@ -13,6 +13,7 @@
         text-align: center;
         font-size: 20px;
         color: rgb(243, 0, 122);
+        text-decoration: none;
       }
       .container {
         max-width: 1000px;
@@ -68,11 +69,9 @@
         <!--paieškos laukelis-->
         <button class="btn btn-warning">Search</button>
       </form>
-      <div class="text-center row">
-        <button id="lucky" class="btn btn-success mt-2" onclick="random()">
-          I'm lucky
-        </button>
-      </div>
+      <button id="lucky" class="btn btn-success mt-2 w-100" onclick="random()">
+        I'm lucky
+      </button>
       <div id="alphabet" class="d-flex gap-3 mt-2 justify-content-center"></div>
       <div id="result" class="mt-5"></div>
       <!--kur bus atvaizduojamas rezultatas-->
