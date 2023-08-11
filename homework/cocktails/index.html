@@ -181,7 +181,9 @@
             let ingredients = "";
             for (let i = 1; i <= 15; i++) {
               if (data["strIngredient" + i])
-                ingredients += `<li>${data["strIngredient" + i]} ${
+                ingredients += `<li><a href="#" onclick="ingredientType(event)">${
+                  data["strIngredient" + i]
+                }</a> ${
                   data["strMeasure" + i] ? data["strMeasure" + i] : ""
                 }</li>`;
             }
@@ -202,10 +204,9 @@
         let ingredients = "";
         for (let i = 1; i <= 15; i++) {
           if (data["strIngredient" + i]) {
-            ingredients += `<li><a href="#" onclick="ingredientType(ingredientData)">${
+            ingredients += `<li><a href="#" onclick="ingredientType(event)">${
               data["strIngredient" + i]
             }</a> ${data["strMeasure" + i] ? data["strMeasure" + i] : ""}</li>`;
-            ingredientData = data["strIngredient" + i];
           }
         }
         alcoData = data.strAlcoholic;
@@ -253,9 +254,10 @@
         valueOfData(data);
       }
       // --------------------------------------------------------------------Filtravimas pagal ingredientą---------------------------------------------------------------------
-      async function ingredientType(ingredientData) {
+      async function ingredientType(e) {
+        let ingredient = e.target.textContent;
         let data = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientData}`
+          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`
         );
         data = await data.json();
         data = data.drinks;
