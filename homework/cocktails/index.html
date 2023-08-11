@@ -104,6 +104,7 @@
       let categoryData;
       let glassData;
       let ingredientData;
+      // --------------------------------------------------------------------Abecelės masyvas---------------------------------------------------------------------
       const alphabet = [
         "A",
         "B",
@@ -132,7 +133,13 @@
         "Y",
         "Z",
       ];
-      // --------------------------------------------------------------------Gaunamos foto---------------------------------------------------------------------
+      // --------------------------------------------------------------------Kuriamos raidžių nuorodos---------------------------------------------------------------------
+      for (const value of alphabet) {
+        document.getElementById(
+          "alphabet"
+        ).innerHTML += `<a href="#" class="text-success" onclick="byFirstLetter(event)">${value}</a>`;
+      }
+      // --------------------------------------------------------------------Gaunamos kokteilių foto---------------------------------------------------------------------
       function getPhotos(e) {
         e.preventDefault();
 
@@ -183,13 +190,7 @@
             addHTML(data, ingredients);
           });
       }
-
-      function modalVisible() {
-        modal.style.visibility = "visible";
-        form.style.visibility = "hidden";
-        lucky.style.visibility = "hidden";
-      }
-
+      // --------------------------------------------------------------------Paspaudus mygtuką "I'm lucky" atsiranda random kokteilis---------------------------------------------------------------------
       async function random() {
         let data = await fetch(
           "https://www.thecocktaildb.com/api/json/v1/1/random.php"
@@ -212,7 +213,7 @@
         glassData = data.strGlass;
         addHTML(data, ingredients);
       }
-
+      // --------------------------------------------------------------------Filtravimas pagal tai, ar kokteilis alkoholinis---------------------------------------------------------------------
       async function alcoType() {
         let data = await fetch(
           `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=${alcoData}`
@@ -225,7 +226,7 @@
         `;
         valueOfData(data);
       }
-
+      // --------------------------------------------------------------------Filtravimas pagal kategoriją---------------------------------------------------------------------
       async function categoryType() {
         let data = await fetch(
           `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${categoryData}`
@@ -238,7 +239,7 @@
         `;
         valueOfData(data);
       }
-
+      // --------------------------------------------------------------------Filtravimas pagal stiklinės tipą---------------------------------------------------------------------
       async function glassType() {
         let data = await fetch(
           `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${glassData}`
@@ -251,7 +252,7 @@
         `;
         valueOfData(data);
       }
-
+      // --------------------------------------------------------------------Filtravimas pagal ingredientą---------------------------------------------------------------------
       async function ingredientType(ingredientData) {
         let data = await fetch(
           `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientData}`
@@ -264,7 +265,22 @@
         `;
         valueOfData(data);
       }
-
+      // --------------------------------------------------------------------Filtravimas pagal pirmąją kokteilio raidę---------------------------------------------------------------------
+      async function byFirstLetter(e) {
+        let letter = e.target.textContent.toLowerCase(); //e.target-nuoroda
+        let data = await fetch(
+          `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`
+        );
+        data = await data.json();
+        data = data.drinks;
+        modal.style.position = "absolute";
+        modalVisible();
+        popUp.innerHTML = `
+        <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
+        `;
+        valueOfData(data);
+      }
+      // --------------------------------------------------------------------Paimami objektų key ir sudedami į nuotraukas ir pavadinimus---------------------------------------------------------------------
       function valueOfData(data) {
         for (const value of data) {
           document.getElementById(
@@ -275,7 +291,13 @@
               </div>`;
         }
       }
-
+      // --------------------------------------------------------------------Modalinis langas tampa matomas---------------------------------------------------------------------
+      function modalVisible() {
+        modal.style.visibility = "visible";
+        form.style.visibility = "hidden";
+        lucky.style.visibility = "hidden";
+      }
+      // --------------------------------------------------------------------Pridedamas HTML---------------------------------------------------------------------
       function addHTML(data, ingredients) {
         popUp.innerHTML = `
         <div class="container m-3">
@@ -300,27 +322,6 @@
           </div>
         </div>
             `;
-      }
-
-      for (const value of alphabet) {
-        document.getElementById(
-          "alphabet"
-        ).innerHTML += `<a href="#" class="text-success" onclick="byFirstLetter(event)">${value}</a>`;
-      }
-
-      async function byFirstLetter(e) {
-        let letter = e.target.textContent.toLowerCase(); //e.target-nuoroda
-        let data = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`
-        );
-        data = await data.json();
-        data = data.drinks;
-        modal.style.position = "absolute";
-        modalVisible();
-        popUp.innerHTML = `
-        <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
-        `;
-        valueOfData(data);
       }
     </script>
   </body>
