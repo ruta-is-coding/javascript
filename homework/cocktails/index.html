@@ -156,7 +156,6 @@
               return (result.innerHTML = `<div class="alert alert-warning">Result not found</div>`);
 
             let html = `<div class="row">`;
-            let idArray = [];
             resp.drinks.map((data) => {
               html += `<div class="col-4">
                                       <a href="#" onclick="getDetails(event, ${data.idDrink})">
@@ -164,20 +163,25 @@
                                     </a>
                                       <h3>${data.strDrink}</h3>
                                       </div>`;
-              idArray.push(data.idDrink);
             });
             html += `</div>`;
-            localStorage.setItem("id", JSON.stringify(idArray));
-            let storedIds = JSON.parse(localStorage.getItem("id"));
-
             result.innerHTML = html;
-
             form.style.visibility = "visible";
             lucky.style.visibility = "visible";
             modal.style.visibility = "hidden";
           });
       }
-
+      // --------------------------------------------------------------------Local storage---------------------------------------------------------------------
+      function setLocalStorage() {
+        let data = localStorage.getItem("key");
+        if (!data) return console.log("No data in local storage");
+        data = JSON.parse(data);
+        // if (random()) {
+        //   modalVisible();
+        //   addHTML(data);
+        // }
+      }
+      setLocalStorage();
       // --------------------------------------------------------------------Gaunamos kokteilio detalės---------------------------------------------------------------------
       function getDetails(e, id) {
         e.preventDefault();
@@ -185,29 +189,14 @@
           .then((resp) => resp.json())
           .then((resp) => {
             const data = resp.drinks[0];
-            let ingredients = "";
-            for (let i = 1; i <= 15; i++) {
-              if (data["strIngredient" + i])
-                ingredients += `<li><a href="#" onclick="ingredientType(event)">${
-                  data["strIngredient" + i]
-                }</a> ${
-                  data["strMeasure" + i] ? data["strMeasure" + i] : ""
-                }</li>`;
-            }
+            let ingredients = ingredientLoop(data);
             modal.style.position = "fixed";
             modalVisible();
             addHTML(data, ingredients);
           });
       }
-      // --------------------------------------------------------------------Paspaudus mygtuką "I'm lucky" atsiranda random kokteilis---------------------------------------------------------------------
-      async function random() {
-        let data = await fetch(
-          "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-        );
-        data = await data.json();
-        data = data.drinks[0];
-        modalVisible();
-        modal.classList.remove("d-flex");
+      // ------------------------------------------------------------------------------------Ingredientų for ciklas---------------------------------------------------------------------
+      function ingredientLoop(data) {
         let ingredients = "";
         for (let i = 1; i <= 15; i++) {
           if (data["strIngredient" + i]) {
@@ -216,9 +205,22 @@
             }</a> ${data["strMeasure" + i] ? data["strMeasure" + i] : ""}</li>`;
           }
         }
+        return ingredients;
+      }
+      // --------------------------------------------------------------------Paspaudus mygtuką "I'm lucky" atsiranda random kokteilis---------------------------------------------------------------------
+      async function random() {
+        let data = await fetch(
+          "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+        );
+        data = await data.json();
+        data = data.drinks[0];
+        localStorage.setItem("key", JSON.stringify(data));
+        modal.classList.remove("d-flex");
+        let ingredients = ingredientLoop(data);
         alcoData = data.strAlcoholic;
         categoryData = data.strCategory;
         glassData = data.strGlass;
+        modalVisible();
         addHTML(data, ingredients);
       }
       // --------------------------------------------------------------------Filtravimas pagal tai, ar kokteilis alkoholinis---------------------------------------------------------------------
@@ -228,6 +230,7 @@
         );
         data = await data.json();
         data = data.drinks;
+        localStorage.setItem("key", JSON.stringify(data));
         modal.style.position = "absolute";
         popUp.innerHTML = `
         <div id="row" class="d-flex flex-wrap m-2 gap-2 justify-content-center"></div>
