@@ -1,0 +1,44 @@
+a {
+  text-align: center;
+  font-size: 20px;
+  color: rgb(243, 0, 122);
+  text-decoration: none;
+}
+.container {
+  max-width: 1000px;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+#modalWindow {
+  position: absolute;
+  width: 60%;
+  left: 20%; /*(100%-width)/2*/
+  top: 10%;
+  background: white;
+  visibility: hidden;
+  border: 1px solid black;
+  height: 500px;
+  overflow-y: scroll;
+}
+svg {
+  position: absolute;
+  cursor: pointer;
+  top: 5px;
+  right: 1%;
+  width: 20px;
+  height: 20px;
+  visibility: none;
+}
+path {
+  fill: rgb(122, 0, 91);
+}
+h3 {
+  text-align: center;
+  color: rgb(243, 0, 122);
+}
+h4 {
+  text-align: center;
+  color: rgb(243, 0, 122);
+}
