@@ -55,7 +55,8 @@
           .then((resp) => {
             const result = document.getElementById("result");
             results = resp.totalResults;
-
+            console.log(resp);
+            console.log(results);
             let html = `<div class="row">`;
             resp.Search.map((data) => {
               html += `<div class="col-4">
