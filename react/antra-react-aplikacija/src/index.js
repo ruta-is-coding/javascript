@@ -1,17 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import Header from "./components/header/Header";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// React naudoja virtualų DOM (ReactDOM)
+// createRoot nurodo, kuris elementas bus pagrindinis
+const root = ReactDOM.createRoot(document.getElementById("root"));
+// Kreipimasis į komponentą iš didžiosios raidės, savaime užsidarančiame elemente <App/>
 root.render(
   <React.StrictMode>
-    <App />
+    <Header />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
