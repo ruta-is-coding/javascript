@@ -1,5 +1,14 @@
 /* @import url(CDN link) */
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+* {
+  margin: 0;
+  font-family: "Courgette", cursive;
+}
+html {
+  scroll-behavior: smooth;
+}
 body {
+  color: white;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -7,8 +16,129 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.3rem;
+}
+.container {
+  max-width: 70%;
+  width: 81rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.home {
+  display: flex;
+  justify-content: center;
+  background: url(./components/home/sunset.jpg) no-repeat center;
+  background-size: cover;
+  color: white;
+  padding-top: 100px;
+}
+.home p {
+  width: 50%;
+}
+.home button {
+  border: 3px solid white;
+  border-radius: 1.5rem;
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  color: white;
+  background-color: transparent;
+  padding: 0.5rem 1.3rem;
+  cursor: pointer;
+}
+.service {
+  background: url(./components/service/palms.jpg) no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+.service .container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.service ul {
+  width: 40%;
+}
+.service li {
+  font-size: 1.3rem;
+  padding-bottom: 1rem;
+}
+header {
+  background-color: rgb(255, 150, 131);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+header img {
+  width: 6rem;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 70%;
+  width: 81rem;
+  margin: 0.1rem auto;
+}
+header nav ul {
+  display: flex;
+  list-style-type: none;
+  gap: 1.87rem;
+}
+header nav ul li a {
+  color: black;
+  font-size: 1.7rem;
+  text-decoration: none;
+}
+.about {
+  background-color: rgb(255, 150, 131);
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+.contact {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(255, 150, 131);
+}
+.contact .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact .row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 0.5rem;
+  width: 40%;
+}
+.contact p {
+  font-size: 1.3rem;
+}
+footer {
+  display: flex;
+  justify-content: center;
+  color: white;
+  background: rgb(235, 27, 44);
+}
+footer .container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
