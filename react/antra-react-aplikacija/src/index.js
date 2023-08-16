@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Header from "./components/header/Header";
+import Header from "./components/Header/Header";
 
 // React naudoja virtualų DOM (ReactDOM)
 // createRoot nurodo, kuris elementas bus pagrindinis
