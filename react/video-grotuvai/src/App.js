@@ -11,7 +11,7 @@ function App() {
         color="white"
         controls="1"
         loop="1"
-        allow="autoplay"
+        mute="1"
       />
       <Video
         id="iudb43yFHIY"
