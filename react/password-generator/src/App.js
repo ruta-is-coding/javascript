@@ -15,12 +15,6 @@ function App() {
 
   // Generate password
   useEffect(() => {
-    // patikriname ar yra local storage duomenu
-    let getData = JSON.parse(localStorage.getItem("passwords"));
-    if (getData) setData(getData);
-    else {
-      setData([]);
-    }
     // generuojame pasvorduka
     let pasvordukas = "";
     if (isNumbers) {
@@ -29,9 +23,20 @@ function App() {
       }
       setPassword(pasvordukas);
     }
-    data.push(pasvordukas);
-    localStorage.setItem("passwords", JSON.stringify(data));
-    console.log(data);
+    // patikriname, ar yra informacijos local storage ir ją iššifruojame
+    // papildome masyvą, užšifruojame
+    // išsaugome
+    let getData = JSON.parse(localStorage.getItem("passwords"));
+    if (getData) {
+      getData.push(pasvordukas);
+    } else {
+      getData = [pasvordukas];
+    }
+
+    localStorage.setItem("passwords", JSON.stringify(getData));
+
+    //Pakeitimu atvaizdavimas
+    setData(getData);
   }, [passwordLength]);
 
   // Pasiimame duomenis iš local storage
@@ -101,11 +106,11 @@ function App() {
 
       <div className="container mt-5">
         <h2>10 Last Generated Passwords:</h2>
-        {/* <div className="container">
-          {data.map((item) => {
-            <li>{data.item}</li>;
-          })}
-        </div> */}
+        <div className="container">
+          {[...data.slice(-10)].reverse().map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </div>
       </div>
     </div>
   );
