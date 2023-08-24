@@ -1,9 +1,9 @@
-import Video from "./components/video";
+import Video from "../../Components/Video/Video";
 
-function App() {
+const VideoPlayers = () => {
   return (
     <div className="container d-flex flex-column align-items-center mt-5">
-      <h1 className="mb-3">Welcome to my Bachata party</h1>
+      <h1 className="my-3">Welcome to my Bachata party</h1>
       <Video
         id="HdepIOmowfU"
         autoplay="1"
@@ -33,6 +33,6 @@ function App() {
       />
     </div>
   );
-}
+};
 
-export default App;
+export default VideoPlayers;

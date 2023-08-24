@@ -39,8 +39,6 @@ function App() {
     setData(getData);
   }, [passwordLength]);
 
-  // Pasiimame duomenis iš local storage
-
   return (
     <div className="container mt-5">
       <h1>Need a password? Try the 1Password Strong Password Generator.</h1>
