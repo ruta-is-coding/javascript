@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./PasswordGenerator.css";
+import BackButton from "../../Components/backButton/backButton";
 
 const PasswordGenerator = () => {
   function rand(min, max) {
@@ -67,6 +68,7 @@ const PasswordGenerator = () => {
 
   return (
     <div className="passwordGenerator">
+      <BackButton />
       <div className="container pt-5">
         <h1>Need a password? Try the 1Password Strong Password Generator.</h1>
         <p>Generate secure, random passwords to stay safe online.</p>

@@ -1,0 +1,19 @@
+.backButton {
+  position: absolute;
+  z-index: 10;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  color: black;
+  padding: 7px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.backButton:hover {
+  background-color: unset;
+  border-color: unset;
+}

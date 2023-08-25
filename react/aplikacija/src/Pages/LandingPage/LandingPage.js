@@ -4,18 +4,22 @@ import About from "../../Components/about/about";
 import Service from "../../Components/service/service";
 import Contact from "../../Components/contact/contact";
 import Footer from "../../Components/footer/footer";
+import BackButton from "../../Components/backButton/backButton";
 import "./LandingPage.css";
 
 const LandingPage = () => {
   return (
-    <div className="landingPage">
-      <Header />
-      <Home />
-      <About />
-      <Service />
-      <Contact />
-      <Footer />
-    </div>
+    <>
+      <BackButton />
+      <div className="landingPage">
+        <Header />
+        <Home />
+        <About />
+        <Service />
+        <Contact />
+        <Footer />
+      </div>
+    </>
   );
 };
 
