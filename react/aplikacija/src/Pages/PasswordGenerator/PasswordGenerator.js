@@ -147,7 +147,7 @@ const PasswordGenerator = () => {
 
         <div className="container mt-5">
           <h2>10 Last Generated Passwords:</h2>
-          <div className="container listItems my-3">
+          <div className="container listItems py-3">
             {reset
               ? ""
               : [...data.slice(-10)]
