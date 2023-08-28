@@ -10,7 +10,7 @@ import "./LandingPage.css";
 const LandingPage = () => {
   return (
     <>
-      <BackButton />
+      <BackButton fillColor="white" />
       <div className="landingPage">
         <Header />
         <Home />

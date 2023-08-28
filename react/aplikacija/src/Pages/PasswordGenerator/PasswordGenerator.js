@@ -68,7 +68,7 @@ const PasswordGenerator = () => {
 
   return (
     <div className="passwordGenerator">
-      <BackButton />
+      <BackButton fillColor="white" />
       <div className="container pt-5">
         <h1>Need a password? Try the 1Password Strong Password Generator.</h1>
         <p>Generate secure, random passwords to stay safe online.</p>

@@ -11,7 +11,7 @@ const ToDo = () => {
 
   return (
     <div className="container mt-5 to-do">
-      <BackButton />
+      <BackButton fillColor="black" />
       <h1 className="my-3">To Do list</h1>
       {/* ToDo Listo forma */}
       <form
