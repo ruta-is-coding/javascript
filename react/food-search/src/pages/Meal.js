@@ -10,7 +10,6 @@ const Meal = () => {
       .then((resp) => resp.json())
       .then((resp) => {
         const meal = resp.meals[0];
-        console.log(meal);
         //meal.strYoutube = 'https://www.youtube.com/embed/' + meal.strYoutube.split('?v=')[1];
         meal.strYoutube = meal.strYoutube.replace("watch?v=", "embed/");
         setData(meal);
