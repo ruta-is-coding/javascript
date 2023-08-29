@@ -16,7 +16,7 @@ const Category = () => {
   return (
     <>
       <h1>Category: {name}</h1>
-      <div className="row mt-5">
+      <div className="row mt-3">
         {data.map((value) => (
           <div className="col-6 mb-3" key={value.idMeal}>
             <Link to={"/meal/" + value.idMeal}>

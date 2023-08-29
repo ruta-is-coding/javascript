@@ -39,8 +39,8 @@ const Meal = () => {
     <div className="container">
       <h1>Meal info:</h1>
       {data && (
-        <div className="row mt-5">
-          <div className="col-6">
+        <div className="row mt-3">
+          <div className="col-6 mb-3">
             <img src={data.strMealThumb} alt={data.strMeal} className="mb-3" />
             <iframe
               width="100%"

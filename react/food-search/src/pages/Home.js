@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Meal database search</h1>
+      <h1 className="mb-3">Meal database search</h1>
       <div className="d-flex gap-2">
         <form className="input-group" onSubmit={handleSubmit}>
           <input
@@ -30,7 +30,7 @@ const Home = () => {
           I'm lucky
         </Link>
       </div>
-      <div className="row mt-5">
+      <div className="row mt-3">
         {data.map((value) => (
           <div className="col-6 mb-3" key={value.idMeal}>
             <Link to={"/meal/" + value.idMeal}>
