@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "id": "2",
+      "title": "Receptas",
+      "author": "Rūta"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
