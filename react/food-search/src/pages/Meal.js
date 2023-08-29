@@ -61,7 +61,10 @@ const Meal = () => {
                   {data.strCategory}
                 </Link>
               </li>
-              <li>Area: {data.strArea}</li>
+              <li>
+                <span>Area: </span>
+                <Link to={"/area/" + data.strArea}>{data.strArea}</Link>
+              </li>
             </ul>
             <h3>Ingredients: </h3>
             <Ingredients />
