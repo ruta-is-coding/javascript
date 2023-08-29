@@ -15,7 +15,7 @@ const Meal = () => {
         meal.strYoutube = meal.strYoutube.replace("watch?v=", "embed/");
         setData(meal);
       });
-  }, []);
+  });
 
   const Ingredients = () => {
     const ingredients = [];

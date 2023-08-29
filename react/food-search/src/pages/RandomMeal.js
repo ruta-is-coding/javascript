@@ -48,7 +48,10 @@ const RandomMeal = () => {
                   {data.strCategory}
                 </Link>
               </div>
-              <div>Area: {data.strArea}</div>
+              <div>
+                <span>Area: </span>
+                <Link to={"/area/" + data.strArea}>{data.strArea}</Link>
+              </div>
               <h3>Ingredients: </h3>
               <Ingredients />
             </div>
