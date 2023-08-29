@@ -23,7 +23,8 @@ const RandomMeal = () => {
       ingredient &&
         ingredients.push(
           <li key={i}>
-            {ingredient} {measure}
+            <Link to={"/ingredient/" + ingredient}>{ingredient}</Link>
+            <span> {measure}</span>
           </li>
         );
     }

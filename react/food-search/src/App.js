@@ -5,6 +5,7 @@ import Meal from "./pages/Meal";
 import Category from "./pages/Category";
 import Area from "./pages/Area";
 import RandomMeal from "./pages/RandomMeal";
+import Ingredient from "./pages/Ingredient";
 import "./App.css";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/meal/:id" element={<Meal />} />
           <Route path="/category/:name" element={<Category />} />
           <Route path="/area/:name" element={<Area />} />
+          <Route path="/ingredient/:name" element={<Ingredient />} />
           <Route path="/random" element={<RandomMeal />} />
         </Routes>
       </Container>

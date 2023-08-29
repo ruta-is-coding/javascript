@@ -14,7 +14,7 @@ const Meal = () => {
         meal.strYoutube = meal.strYoutube.replace("watch?v=", "embed/");
         setData(meal);
       });
-  });
+  }, []);
 
   const Ingredients = () => {
     const ingredients = [];
@@ -26,7 +26,8 @@ const Meal = () => {
       ingredient &&
         ingredients.push(
           <li key={i}>
-            {ingredient} {measure}
+            <Link to={"/ingredient/" + ingredient}>{ingredient}</Link>
+            <span> {measure}</span>
           </li>
         );
     }
