@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import PhotoList from "../components/PhotoList/PhotoList";
 
 const Home = () => {
   const [search, setSearch] = useState("");
@@ -76,16 +77,7 @@ const Home = () => {
           ))}
         </select>
       </div>
-      <div className="row mt-3">
-        {data.map((value) => (
-          <div className="col-6 mb-3" key={value.idMeal}>
-            <Link to={"/meal/" + value.idMeal}>
-              <img src={value.strMealThumb} alt={value.strMeal} />
-            </Link>
-            <h3>{value.strMeal}</h3>
-          </div>
-        ))}
-      </div>
+      <PhotoList data={data} />
     </>
   );
 };
