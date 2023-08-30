@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import BackButton from "../components/BackButton/BackButton";
 
 const Meal = () => {
   const [data, setData] = useState();
@@ -36,7 +37,8 @@ const Meal = () => {
   };
 
   return (
-    <div className="container">
+    <>
+      <BackButton />
       <h1>Meal info:</h1>
       {data && (
         <div className="row mt-3">
@@ -71,7 +73,7 @@ const Meal = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

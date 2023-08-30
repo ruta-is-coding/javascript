@@ -11,12 +11,25 @@ const Home = () => {
     alphabet.push(String.fromCharCode(65 + i));
   }
 
+  const selectCategory = (e) => {
+    const optionValue = e.target.value;
+
+    fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=" + optionValue)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setData(resp.meals);
+        setSearch("");
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + search)
       .then((resp) => resp.json())
-      .then((resp) => setData(resp.meals));
+      .then((resp) => {
+        setData(resp.meals);
+      });
   };
 
   //Kaip iš select option ištraukti vertę?
@@ -28,8 +41,6 @@ const Home = () => {
         setCategories(resp.categories);
       });
   }, []);
-
-  console.log(categories);
 
   return (
     <>
@@ -56,13 +67,10 @@ const Home = () => {
         ))}
       </div>
       <div className="col-3">
-        <select className="my-3 form-select">
+        <select className="my-3 form-select" onChange={selectCategory}>
+          <option>Select category</option>
           {categories.map((value, index) => (
-            <option
-              value={value.strCategory}
-              key={index}
-              // onChange={categoryItems}
-            >
+            <option value={value.strCategory} key={index}>
               {value.strCategory}
             </option>
           ))}

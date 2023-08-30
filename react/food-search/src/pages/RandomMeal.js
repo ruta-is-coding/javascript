@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import BackButton from "../components/BackButton/BackButton";
 
 const RandomMeal = () => {
   const [data, setData] = useState();
@@ -34,6 +35,7 @@ const RandomMeal = () => {
 
   return (
     <>
+      <BackButton />
       {data && (
         <>
           <h1>{data.strMeal}</h1>

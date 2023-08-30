@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import BackButton from "../components/BackButton/BackButton";
 
 const FirstLetter = () => {
   const [data, setData] = useState([]);
@@ -16,6 +17,7 @@ const FirstLetter = () => {
 
   return (
     <>
+      <BackButton />
       <h1>Filter by letter {letter}</h1>
       <div className="row mt-3">
         {data.map((value) => (

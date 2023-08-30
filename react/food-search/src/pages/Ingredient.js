@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import BackButton from "../components/BackButton/BackButton";
 
 const Ingredient = () => {
   const [data, setData] = useState([]);
@@ -15,6 +16,7 @@ const Ingredient = () => {
 
   return (
     <>
+      <BackButton />
       <h1>Ingredient: {name}</h1>
       <div className="row mt-3">
         {data.map((value) => (

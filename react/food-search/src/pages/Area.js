@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import BackButton from "../components/BackButton/BackButton";
 
 const Area = () => {
   const [data, setData] = useState([]);
@@ -15,6 +16,7 @@ const Area = () => {
 
   return (
     <>
+      <BackButton />
       <h1>Area: {name}</h1>
       <div className="row mt-3">
         {data.map((value) => (
