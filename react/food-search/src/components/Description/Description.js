@@ -22,7 +22,7 @@ const Description = ({ data }) => {
 
   return (
     <>
-      <h1>{data.strMeal}</h1>
+      <h1 className="mb-4">{data.strMeal}</h1>
       <div className="row mt-3">
         <div className="col-6 mb-3">
           <img src={data.strMealThumb} alt={data.strMeal} className="mb-3" />
@@ -49,8 +49,10 @@ const Description = ({ data }) => {
               <Link to={"/area/" + data.strArea}>{data.strArea}</Link>
             </li>
           </ul>
-          <h3>Ingredients: </h3>
+          <h3 className="mt-5">Ingredients: </h3>
           <Ingredients />
+          <h3 className="mt-5">Preparation: </h3>
+          <p>{data.strInstructions}</p>
         </div>
       </div>
     </>
