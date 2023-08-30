@@ -194,9 +194,6 @@ let tagsArray = tags.split(","); //split when you see a ","
 console.log(tagsArray);
 
 //Arrays
-/*
-
-*/
 let myArray = [];
 myArray[0] = 25;
 myArray[1] = 45;
@@ -212,9 +209,85 @@ console.log(myArray2);
 let myArray3 = new Array(5);
 console.log(myArray3);
 
-//Array properties
+// Array properties
 console.log(myArray.length);
 
-//Array methods
+// Array methods
 console.log(myArray.sort());
 console.log(myArray.reverse());
+
+// Objects
+// Objects have properties inside
+let myCar = new Object();
+myCar.maxSpeed = 50;
+myCar.driver = "Shawn";
+//We can insert functions (methods) inside
+myCar.drive = function () {
+  console.log("Now driving");
+};
+myCar.drive();
+
+let myCar2 = {
+  maxSpeed: 70,
+  driver: "Net Ninja",
+  drive: function (speed, time) {
+    console.log(speed * time);
+  },
+  test: function () {
+    console.log(this);
+  },
+  logDriver: function () {
+    console.log("Driver's name is " + this.driver);
+  },
+};
+myCar2.drive(50, 3);
+
+//this keyword
+myCar2.test();
+myCar2.logDriver();
+
+//Constructor functions (functions that create objects)
+let Car = function (maxSpeed, driver) {
+  this.maxSpeed = maxSpeed;
+  this.driver = driver;
+  this.drive = function (speed, time) {
+    console.log(speed * time);
+  };
+  this.logDriver = function () {
+    console.log("Driver's name is " + this.driver);
+  };
+};
+
+let myCar3 = new Car(70, "John");
+let myCar4 = new Car(80, "Jack");
+
+//The DOM - Document Object Model
+/*The Document is just a web page (an HTML document).
+Every element within the document is an object.
+We can use these objects to call methods on them.
+Nodes are everything we can change within the document (elements, text and attributes)
+*/
+
+//Reaching the DOM:
+
+//Store elements within variables.
+// 1) getElementsByClassName
+let myContent = document.getElementsByClassName("content");
+// 2) getElementsByTagName
+let myLinks = myContent[0].getElementsByTagName("a");
+// 3) getElementByID
+// 3) querySelector
+
+//Changing content
+//Changing the content: innerHTML property
+myLinks[2].innerHTML = "I am a link";
+//Changing the content: textContent property
+
+//Changing attributes:
+// 1) Grab an element ->
+// 2) Use set- or get- Attribute
+console.log(myLinks[2].getAttribute("href"));
+myLinks[2].setAttribute("class", "pie");
+//.className property
+myLinks[2].className = "Ninja";
+//.style property
