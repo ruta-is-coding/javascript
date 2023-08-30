@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import BackButton from "../components/BackButton/BackButton";
+import Description from "../components/Description/Description";
 
 const RandomMeal = () => {
   const [data, setData] = useState();
@@ -9,58 +9,16 @@ const RandomMeal = () => {
     fetch("https://www.themealdb.com/api/json/v1/1/random.php")
       .then((resp) => resp.json())
       .then((resp) => {
-        setData(resp.meals[0]);
-        console.log(data);
+        const meal = resp.meals[0];
+        meal.strYoutube = meal.strYoutube.replace("watch?v=", "embed/");
+        setData(meal);
       });
   }, []);
-
-  const Ingredients = () => {
-    const ingredients = [];
-
-    for (let i = 1; i <= 20; i++) {
-      const ingredient = data["strIngredient" + i];
-      const measure = data["strMeasure" + i];
-
-      ingredient &&
-        ingredients.push(
-          <li key={i}>
-            <Link to={"/ingredient/" + ingredient}>{ingredient}</Link>
-            <span> {measure}</span>
-          </li>
-        );
-    }
-
-    return ingredients;
-  };
 
   return (
     <>
       <BackButton />
-      {data && (
-        <>
-          <h1>{data.strMeal}</h1>
-          <div className="row mt-5">
-            <div className="col-6 mb-3">
-              <img src={data.strMealThumb} alt={data.strMeal} />
-            </div>
-            <div className="col-6 mb-3">
-              <h3>Info: </h3>
-              <div>
-                <span>Category: </span>
-                <Link to={"/category/" + data.strCategory}>
-                  {data.strCategory}
-                </Link>
-              </div>
-              <div>
-                <span>Area: </span>
-                <Link to={"/area/" + data.strArea}>{data.strArea}</Link>
-              </div>
-              <h3>Ingredients: </h3>
-              <Ingredients />
-            </div>
-          </div>
-        </>
-      )}
+      {data && <Description data={data} />}
     </>
   );
 };
