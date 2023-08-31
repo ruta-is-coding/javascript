@@ -11,8 +11,7 @@ const FirstLetter = () => {
     fetch("https:/www.themealdb.com/api/json/v1/1/search.php?f=" + letter)
       .then((resp) => resp.json())
       .then((resp) => {
-        setData(resp.meals);
-        console.log(resp);
+        if (resp.meals) setData(resp.meals);
       });
   }, []);
 
