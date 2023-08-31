@@ -283,11 +283,41 @@ let myLinks = myContent[0].getElementsByTagName("a");
 myLinks[2].innerHTML = "I am a link";
 //Changing the content: textContent property
 
-//Changing attributes:
+// Changing attributes:
 // 1) Grab an element ->
-// 2) Use set- or get- Attribute
+// 2) Use getAttribute or setAttribute
 console.log(myLinks[2].getAttribute("href"));
 myLinks[2].setAttribute("class", "pie");
-//.className property
+// .className property
 myLinks[2].className = "Ninja";
-//.style property
+// .style property
+
+// Changing CSS styles
+// With setAttribute or style property
+let styleLink = myLinks[0];
+styleLink.setAttribute(
+  "style",
+  "color: tomato; font-weight: bold; text-decoration: none"
+);
+// CamelCase
+styleLink.style.fontSize = "30px";
+
+//Adding elements to the DOM
+let newImage = document.createElement("img");
+let imageContainer = document.querySelector(".imageContainer");
+//appendChild
+imageContainer.appendChild(newImage);
+newImage.setAttribute(
+  "src",
+  "https://media.istockphoto.com/id/1142665470/photo/a-lilac-british-cat-with-a-blue-coat-looking-up-the-cat-opened-his-mouth-with-a-mad-look-the.jpg?s=612x612&w=0&k=20&c=taxLHL2AxrFzmSaGUqIk1jYNQ19LXvg3fxxFly0RHyY="
+);
+let newHeading = document.createElement("h1");
+imageContainer.insertBefore(newHeading, newImage);
+newHeading.innerText = "Crazy cat";
+
+//Removing elements
+let child = document.getElementsByTagName("a")[0];
+child.remove();
+
+//Events
+//Directly in the elements onClick="alert('You clicked me')" (messy)

@@ -6,6 +6,7 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState();
 
   const alphabet = [];
   for (let i = 0; i < 26; i++) {
@@ -14,7 +15,7 @@ const Home = () => {
 
   const selectCategory = (e) => {
     const optionValue = e.target.value;
-
+    setSelectedCategory(optionValue);
     fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=" + optionValue)
       .then((resp) => resp.json())
       .then((resp) => {
@@ -25,11 +26,11 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setSelectedCategory();
     fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + search)
       .then((resp) => resp.json())
       .then((resp) => {
-        setData(resp.meals);
+        if (resp.meals) setData(resp.meals);
       });
   };
 
@@ -69,9 +70,13 @@ const Home = () => {
       </div>
       <div className="col-3">
         <select className="my-3 form-select" onChange={selectCategory}>
-          <option>Select category</option>
+          <option selected={!selectedCategory}>Select category</option>
           {categories.map((value, index) => (
-            <option value={value.strCategory} key={index}>
+            <option
+              value={value.strCategory}
+              key={index}
+              selected={selectedCategory === value.strCategory}
+            >
               {value.strCategory}
             </option>
           ))}
