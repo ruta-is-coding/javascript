@@ -3,7 +3,7 @@ const NewPost = () => {
     e.preventDefault();
     //Visi formos duomenys išsaugomi objekte
     const data = new FormData(e.target);
-    //iš formData ištraukiamos visos reikšmės ir sudedamos į objektą naudojant entries metodą
+    //iš formData ištraukiamos visos reikšmės ir sudedamos į objektą naudojant entries() metodą;
     //key - [el[0]]
     //value - el[1]
     const body = {};
