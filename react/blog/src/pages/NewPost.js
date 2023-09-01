@@ -3,10 +3,12 @@ const NewPost = () => {
     e.preventDefault();
     //Visi formos duomenys išsaugomi objekte
     const data = new FormData(e.target);
-    //iš formData ištraukiamos visos reikšmės ir sudedamos į objektą
+    //iš formData ištraukiamos visos reikšmės ir sudedamos į objektą naudojant entries metodą
+    //key - [el[0]]
+    //value - el[1]
     const body = {};
-    for (const el of data.entries()) {
-      body[el[0]] = el[1];
+    for (const array of data.entries()) {
+      body[array[0]] = array[1];
     }
     //Formos duomenų išsiuntimas
     fetch("http://localhost:3000/posts", {
@@ -15,7 +17,7 @@ const NewPost = () => {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: new URLSearchParams(body), //prie body key nurodome kokią informaciją norime persiųsti
+      body: new URLSearchParams(body), //prie body key nurodome informaciją, kurią norime persiųsti
     })
       .then((resp) => resp.json())
       .then((resp) => console.log(resp));
