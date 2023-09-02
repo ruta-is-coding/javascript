@@ -4,12 +4,28 @@ import { useState, useEffect } from "react";
 
 const Admin = () => {
   const [data, setData] = useState([]);
+  const [message, setMessage] = useState();
 
   useEffect(() => {
+    if (!message && typeof message === "boolean") return;
+
     fetch("http://localhost:3000/posts")
       .then((resp) => resp.json())
       .then((resp) => setData(resp));
-  }, []);
+  }, [message]);
+
+  const handleDelete = (id) => {
+    fetch("http://localhost:3000/posts/" + id, {
+      method: "DELETE",
+    })
+      .then((resp) => resp.json())
+      .then(() => {
+        setMessage("A blog post successfully deleted");
+        setTimeout(() => {
+          setMessage(false);
+        }, 3500);
+      });
+  };
 
   return (
     <>
@@ -19,6 +35,9 @@ const Admin = () => {
           New Post
         </Link>
       </div>
+
+      {message && <div className="alert alert-success mt-3">{message}</div>}
+
       <table className="table">
         <thead>
           <tr>
@@ -30,15 +49,20 @@ const Admin = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((value) => (
-            <tr>
+          {data.map((value, index) => (
+            <tr key={index}>
               <td>{value.title}</td>
               <td>{value.author}</td>
               <td>{value.category}</td>
               <td>{value.date}</td>
               <td className="d-flex gap-3">
                 <Link className="btn btn-warning">Edit</Link>
-                <Link className="btn btn-danger">Delete</Link>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDelete(value.id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

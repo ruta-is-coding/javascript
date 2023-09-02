@@ -12,11 +12,19 @@ const Home = () => {
 
   return (
     <>
+      <div className="d-flex justify-content-end gap-3">
+        <Link to="/new-post" className="btn btn-success">
+          New Post
+        </Link>
+        <Link to="/admin" className="btn btn-success">
+          Admin{" "}
+        </Link>
+      </div>
       <h1 className="text-center pb-5">Hey, besties! Welcome to my blog!</h1>
-      <main className="row">
+      <main className="row mb-5">
         <section className="col-9">
-          {data.map((value) => (
-            <div className="card rounded overflow-hidden shadow-sm">
+          {data.map((value, index) => (
+            <div className="card rounded overflow-hidden shadow-sm" key={index}>
               <div className="row">
                 <div className="col-5">
                   <img
