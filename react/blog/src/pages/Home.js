@@ -24,7 +24,10 @@ const Home = () => {
       <main className="row mb-5">
         <section className="col-9">
           {data.map((value, index) => (
-            <div className="card rounded overflow-hidden shadow-sm" key={index}>
+            <div
+              className="card rounded overflow-hidden shadow-sm mb-3"
+              key={index}
+            >
               <div className="row">
                 <div className="col-5">
                   <img

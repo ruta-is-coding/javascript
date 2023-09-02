@@ -56,7 +56,9 @@ const Admin = () => {
               <td>{value.category}</td>
               <td>{value.date}</td>
               <td className="d-flex gap-3">
-                <Link className="btn btn-warning">Edit</Link>
+                <Link className="btn btn-warning" to={"/edit-post/" + value.id}>
+                  Edit
+                </Link>
                 <button
                   className="btn btn-danger"
                   onClick={() => handleDelete(value.id)}
