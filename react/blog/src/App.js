@@ -8,6 +8,8 @@ import EditPost from "./pages/EditPost";
 import "./App.css";
 
 //nd. - paieška ir filtravimas pagal kategorijas (aside)
+//paieška: Add _like to filter
+//kategorijos: GET /posts?category=json-server
 
 function App() {
   return (
