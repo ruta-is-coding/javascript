@@ -7,6 +7,8 @@ import NewPost from "./pages/NewPost";
 import EditPost from "./pages/EditPost";
 import "./App.css";
 
+//nd. - paieška ir filtravimas pagal kategorijas (aside)
+
 function App() {
   return (
     <BrowserRouter>
