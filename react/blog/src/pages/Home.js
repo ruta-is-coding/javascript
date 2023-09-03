@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/search/" + search);
+  };
 
   useEffect(() => {
     fetch("http://localhost:3000/posts")
@@ -22,12 +29,9 @@ const Home = () => {
       </div>
       <h1 className="text-center pb-5">Hey, besties! Welcome to my blog!</h1>
       <main className="row mb-5">
-        <section className="col-9">
+        <section className="col-9 d-flex flex-column gap-3">
           {data.map((value, index) => (
-            <div
-              className="card rounded overflow-hidden shadow-sm mb-3"
-              key={index}
-            >
+            <div className="card rounded overflow-hidden shadow-sm" key={index}>
               <div className="row">
                 <div className="col-5">
                   <img
@@ -39,7 +43,7 @@ const Home = () => {
                     }}
                   />
                 </div>
-                <div className="col-7 p-3 ">
+                <div className="col-7 p-4">
                   <h3 className="pb-3">{value.title}</h3>
                   <p>{value.excerpt}</p>
                   <Link to={"/post/" + value.id} className="btn btn-danger">
@@ -50,8 +54,15 @@ const Home = () => {
             </div>
           ))}
         </section>
-        <aside className="col-3 ">
-          <div className="bg-danger-subtle"></div>
+        <aside className="col-3 bg-danger-subtle py-3 rounded shadow-sm border">
+          <form className="searchBar" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </form>
         </aside>
       </main>
     </>
