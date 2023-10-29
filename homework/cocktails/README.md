@@ -2,15 +2,12 @@
 
 # Kokteilių aplikacija
 
-https://www.themealdb.com/api.php
+https://www.thecocktaildb.com/api.php
 
-Naudodamiesi React biblioteka, sukurkite kokteilių aplikacijos funkcionalumą. Dokumentacijoje susiraskite reikiamas API nuorodas ir papildykite aplikaciją šiomis funkcijomis:
+Sukurkite funkcionalią kokteilių aplikaciją. Dokumentacijoje suraskite reikiamas API nuorodas ir papildikyte aplikaciją šiomis funkcijomis:
 
-- Sukurkite mygtuką "Man sekasi" ant kurio paspaudus būtų atvaizduojama atsitiktinio patiekalo informacija (Lookup a single random meal);
-
-- Sukurkite nuorodą šiems puslapiams: - Kategorija, - Vietovė, - Ingredientai.
-  Paspaudus ant nuorodos vartotojas nukreipiamas į puslapį kuriame atvaizduojami patiekalai pagal pasirinktą paieškos kriterijų;
-
-- Po paieškos laukeliu atvaizduokite visas lotyniškos abecelės raides su nuorodomis prie kiekvienos raidės, ant kurios paspaudus sąraše vartotojas matytų patiekalus pagal pavadinimo pirmą raidę. (List all meals by first letter);
-
-- Po paieškos laukeliu atvaizduokite pasirinkimo (select) laukelį, kuriame priskirkite visas galimas kategorijas (List all meal categories). Laukelyje pasirinkus kategoriją atvaizduokite patiekalus esančius toje kategorijoje.
+- Sukurkite mygtuką "Man sekasi" ant kurio paspaudus būtų atvaizduojama atsitiktinio kokteilio informacija (Lookup a random cocktail);
+- Kokteilio informacijoje atvaizduojamą informaciją ar šis alkoholinis ar ne, apgliaubkite į nuorodą ant kurios paspaudus vartotojas būtų nukreipiamas į filtruotą kokteilių sąrašą (Filter by alcoholic);
+  -Atlikite tokius pačius veiksmus su šia informacija: - Filtravimas pagal kategoriją (Filter by Category); - Filtravimas pagal taurę (Filter by Glass); - Filtravimas pagal ingridientus (Search by ingredient);
+- Po paieškos laukeliu atvaizduokite visas lotyniškos abecelės raides su nuorodomis prie kiekvienos raidės, ant kurios paspaudus sąraše vartotojas matytų kokteilius pagal pavadinimo pirmą raidę. (List all cocktails by first letter);
+- Pasinaudodami localStorage, išsaugokite vartotojui matomą vaizdą taip, jog atnaujinus pusląpį niekas nepasikeistų.
