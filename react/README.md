@@ -1,5 +1,6 @@
-Project descriptions:
-[Food search](http://www.google.fr/)
-[Landing page](http://www.google.fr/)
-[Password generator](http://www.google.fr/)
-[Video players](http://www.google.fr/)
+# Projects with descriptions:
+
+- [Food search](https://github.com/ruta-is-coding/javascript/tree/main/react/food-search)\
+- [Landing page](https://github.com/ruta-is-coding/javascript/tree/main/react/landing-page)\
+- [Password generator](https://github.com/ruta-is-coding/javascript/tree/main/react/password-generator)\
+- [Video players](https://github.com/ruta-is-coding/javascript/tree/main/react/video-grotuvai)\

@@ -10,6 +10,8 @@ In the React environment, create a component whose purpose is to render the sele
 - Create a props "thumbnail", which upon receipt would display the submitted photo (instead of a video), even if the videoID props were transmitted;
 - Test all possible situations using the same component by rendering different videos.
 
+---
+
 **_Lithuanian_**
 
 # Video grotuvai

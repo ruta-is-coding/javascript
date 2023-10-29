@@ -7,6 +7,8 @@
 - Create a footer section with a text "2023 All rights reserved";
 - Save each section as a separate component.
 
+---
+
 **_Lithuanian_**
 
 # React landing page

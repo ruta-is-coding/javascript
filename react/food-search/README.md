@@ -15,6 +15,8 @@ Create a functional recipe application using the React library. Find the necessa
 
 - Under the search box, display a select field in which you can assign all possible categories (List all meal categories). After selecting a category in the box, display the dishes from that category.
 
+---
+
 **_Lithuanian_**
 
 # Receptų aplikacija
