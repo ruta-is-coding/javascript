@@ -4,13 +4,13 @@
 
 https://www.thecocktaildb.com/api.php
 
-Create a functional cocktail aplication. Find the necessary API references in the documentation and add the following functionality:
+Create a functional cocktail application. Find the necessary API references in the documentation and add the following functionality:
 
-- Create "I'm lucky" button, which after clicking would display the information of a random cocktail (Lookup a random cocktail);
-- Change the information, whether the cocktail is alcoholic or not, to a link, which when clicked would redirect the user to a filtered list of cocktails (Filter by alcoholic);
+- Create an "I'm lucky" button, that would display the information about a random cocktail (Lookup a random cocktail);
+- Change the information, whether the cocktail is alcoholic or not, to a link, that would redirect the user to a filtered list of cocktails (Filter by alcoholic);
   - Perform the same steps with this information: - Filter by Category; - Filter by Glass; - Filtering by ingredients (Search by ingredient);
-- Display all the letters of the Latin alphabet below the search box with links to each letter, which when clicked would display cocktails based on the first letter. (List all cocktails by first letter);
-- Using localStorage, save the image visible to the user so that nothing changes when the page is refreshed.
+- Display all the letters of the Latin alphabet below the search box with links to each letter, that would display cocktails based on the first letter (List all cocktails by first letter);
+- Using localStorage, save the image visible to the user so that nothing changes when he refreshes the page.
 
 ---
 

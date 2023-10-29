@@ -2,15 +2,15 @@
 
 # OMDb API search:
 
-1. Create an OMDb api key (https://www.omdbapi.com/);
+1. Create an OMDb API key (https://www.omdbapi.com/);
 2. Get the list of Marvel movies and series according to the generated API link:
    https://www.omdbapi.com/?apikey=[API_KEY]&s=marvel;
-3. Display first 10 movies on the page;
+3. Display the first 10 movies on the page;
 4. Create paging functionality using "Previous" and "Next" buttons:
    - After opening the website, the first page is displayed by default;
-   - After clicking on the "Next" button, the user is redirected to the second page, and so on;
-   - If the user is on the first page, the "Previous" button must have an attribute "disabled" and redirection must be stopped;
-   - Do the same with the "Next" button, if the user is on the last page;
+   - After clicking on the "Next" button, that redirects the user to the second page, and so on;
+   - If the user is on the first page, the "Previous" button must have an attribute "disabled" and then redirection stops;
+   - Do the same with the "Next" button if the user is on the last page;
 5. Test pagination with more search phrases.
 
 ---

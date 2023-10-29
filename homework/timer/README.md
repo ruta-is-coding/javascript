@@ -4,8 +4,8 @@
 
 Create a timer that counts down the time and visually informs you when it ends.
 
-- The program needs an input field, where we enter the time in minutes;
-- JavaScript must check if the entered data is a number. Otherwise, the program must inform that the time is entered incorrectly;
+- The program needs an input field where we enter the time in minutes;
+- JavaScript must check if the entered data is a number. Otherwise, the program must inform you that you entered the time incorrectly;
 - The program must display the remaining time, which changes every second;
 - There must be a button that allows you to restart the time;
 - When the time expires, the application must clearly inform that the time has expired (for example, change the background color, throw a nice big message, or whatever you can think of).

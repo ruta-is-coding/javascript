@@ -2,19 +2,19 @@
 
 # JavaScript game (me vs computer)
 
-Create a game that has two players: the player (you) and the computer.
+Create a game with two players: the player (you) and the computer.
 
 - The game consists of 10 rounds;
 - The duration of one round is 30s;
 - The player who collects more points wins the round;
-- At the end of each round, display the winner's name, points collected in the round and all won rounds next to each players' name.
+- At the end of each round, display the winner's name, points collected in the round, and all won rounds next to each player's name.
 
 ### The principles of the game:
 
 - A square (50px x 50px) is displayed on the page, which changes its random position and its background color every 1s;
 - If the player manages to press on the square during this time period - a point is awarded to him. Otherwise, the computer wins;
-- In each rounde browser, display a timer counting the duration of the rounde;
-- At the end of the game, display the winner's name and a button that would restart the game if clicked.
+- In each round browser, display a timer counting the duration of the round;
+- At the end of the game, display the winner's name and a button that restarts the game.
 
 ---
 

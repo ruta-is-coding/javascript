@@ -6,14 +6,14 @@ https://www.themealdb.com/api.php
 
 Create a functional recipe application using the React library. Find the necessary API references in the documentation and add the following functions to the application:
 
-- Create a "I'm lucky" button, which after clicking would display the information of a random meal (Lookup a single random meal);
+- Create an "I'm lucky" button, that would display information about a random meal (Lookup a single random meal);
 
 - Create links to the following pages: - Category, - Location, - Ingredients.
-  By clicking on the link, redirect the user to a page, which displays meals according to the search criteria;
+  By clicking on the link, redirect the user to a page that displays meals according to the search criteria;
 
-- Display all letters of the Latin alphabet below the search box with links, which after clicking would display meals filtered by the first letter. (List all meals by first letter);
+- Display all letters of the Latin alphabet below the search box with links, that would display meals filtered by the first letter (List all meals by first letter);
 
-- Under the search box, display a select field in which you can assign all possible categories (List all meal categories). After selecting a category in the box, display the dishes from that category.
+- Under the search box, display a select field that assigns all possible categories (List all meal categories). After selecting, display the dishes from that category.
 
 ---
 
