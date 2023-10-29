@@ -1,6 +1,9 @@
-# Cocktail app
+**_Lithuanian_**
+
+# Kokteilių aplikacija
 
 https://www.themealdb.com/api.php
+
 Naudodamiesi React biblioteka, sukurkite kokteilių aplikacijos funkcionalumą. Dokumentacijoje susiraskite reikiamas API nuorodas ir papildykite aplikaciją šiomis funkcijomis:
 
 - Sukurkite mygtuką "Man sekasi" ant kurio paspaudus būtų atvaizduojama atsitiktinio patiekalo informacija (Lookup a single random meal);
